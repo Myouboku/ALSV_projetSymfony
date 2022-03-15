@@ -30,17 +30,17 @@ class Personne
     private $per_prenom;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50 nullable=true)
      */
     private $per_mail;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $per_tel;
 
     /**
-     * @ORM\ManyToMany(targetEntity=fonction::class, inversedBy="personnes")
+     * @ORM\ManyToMany(targetEntity=fonction::class, inversedBy="personnes", )
      */
     private $FON_id;
 
