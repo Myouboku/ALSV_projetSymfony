@@ -25,12 +25,12 @@ class Personne
     private $per_nom;
 
     /**
-     * @ORM\Column(type="string", length=38)
+     * @ORM\Column(type="string", length=38, nullable=true)
      */
     private $per_prenom;
 
     /**
-     * @ORM\Column(type="string", length=50 nullable=true)
+     * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $per_mail;
 
