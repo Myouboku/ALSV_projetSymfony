@@ -1,0 +1,14 @@
+
+html {
+    font-family: Roboto, sans-serif;
+}
+
+/* TODO bandeau flex pour logo, infos utilisateurs et boutons de navigation */
+#main-layout {
+    display: flex;
+}
+
+/* TODO affichage flex dynamique pour form */
+#form-login {
+    display: grid;
+}
