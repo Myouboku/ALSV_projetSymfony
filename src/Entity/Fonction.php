@@ -20,7 +20,7 @@ class Fonction
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=38, nullable=true)
+     * @ORM\Column(type="string", length=38)
      */
     private $FON_libelle;
 
