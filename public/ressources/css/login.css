@@ -1,0 +1,95 @@
+.form-login-input {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  width: fit-content;
+  grid-gap: 10px;
+}
+
+html {
+    font-family: Roboto, sans-serif;    
+}
+
+body {
+    background-color: #d5d5d5;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+/* TODO bandeau flex pour logo, infos utilisateurs et boutons de navigation */
+.main-layout {    
+    margin-top: 6em;
+    line-height: 1.5;
+}
+
+.main-layout * {
+    text-align: center;
+}
+
+.logo-container img {
+    width: 400px;
+    height: auto;
+}
+
+.title-text {
+    margin-top: 1.3em;
+    color: #343434;
+    font-size: 40px;
+}
+
+.form-login {
+    margin-top: 3em;
+}
+
+.form-login-input-title {
+    color: #333333;
+    font-size: 26px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+}
+
+#login, #password {
+    align-self: center;
+}
+
+.form-login-input input {
+    text-align: left;
+    height: 22px;
+    border: none;
+    box-shadow: 0 5px 6px rgba(0, 0, 0, .094);
+    color: #343434;
+    font-weight: 300;
+}
+
+.form-login-input input:focus-visible {
+    border: 1px solid #cccccc;
+}
+
+.form-login-input label {
+    justify-self: right;
+}
+
+.form-login-submit-button {
+    margin-top: 3em;
+}
+
+.form-login-submit-button button {
+    width: 150px;
+    height: 35px;
+    background-color: #7e7e7e;
+    color: #efefef;    
+    border: 0px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 18px;
+    border-radius: 3px;
+    transition: .5s all;
+    box-shadow: 0 5px 6px rgba(0, 0, 0, .094);
+}
+
+.form-login-submit-button button:hover {
+    background-color: #9f9f9f; 
+    cursor: pointer;    
+}
+

@@ -12,12 +12,10 @@ use Symfony\Component\HttpFoundation\Response;
 class AccueilController extends AbstractController {
 
     /**
-     * @Route("Acceuil", name="accueil")
+     * @Route("Accueil", name="accueil")
      */
 
     function login(ManagerRegistry $doctrine) {
-        $entityManager = $doctrine->getManager();
-        $login = $entityManager->getRepository(Annonce::class)->findAll();
-        return $this->render('accueil.html.twig',['listeannonces'=>$login]);
+        return $this->render('accueil.html.twig');
     }
 }

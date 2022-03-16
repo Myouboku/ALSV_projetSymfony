@@ -2,23 +2,21 @@
   <html lang="fr">
     <head>
       <meta charset="UTF-8">
-      <title>{% block title %}Connexion ALSV{% endblock %}</title>
-      <link rel="stylesheet" href="ressources/css/login.css"/>
+      <title>Connexion ALSV</title>
+      <link href="ressources/css/login.css" rel="stylesheet">
+      <link href="ressources/img/iconeCampus.ico" rel="shortcut icon">
     </head>
-    
     <body>
       <div class="main-layout">
-        <div class="logo logo-container">
-          <img src="ressources/img/logoCampus.png" alt="Logo La Châtaigneraie"/>
+        <div class="logo-container">
+          <img src="ressources/img/logoCampus.png" alt="Logo La Châtaigneraie">
         </div>
         <div class="title">
-          <div class="title-text text">
-            Identification
-          </div>
+          <div id="title-text" class="title-text">Identification</div>
           {# SECTION formulaire #}
           <div class="form-login">
             {# NOTE donner id à form si utilisation de plusieurs forms #}
-            <form>
+            <form action="{{ path('Entreprise')}}" method="POST">
               <div class="form-login-input">
                 <div class="form-login-input-title">
                   <label for="login">Nom d'utilisateur :</label>
@@ -29,7 +27,7 @@
                   <input type="password" id="password" name="password"></input>
                 </div>
               </div>
-              <div class="form-login-submit submit button">
+              <div class="form-login-submit-button">
                 <button type="submit" id="sumbit">Connexion</button>
               </div>
             </form>
