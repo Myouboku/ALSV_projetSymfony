@@ -1,0 +1,66 @@
+
+html {
+  font-family: Roboto, sans-serif;    
+}
+
+body {
+  background-color: #d5d5d5;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+/* TODO bandeau flex pour logo, infos utilisateurs et boutons de navigation */
+.main-layout {    
+  margin-top: 7em;
+  line-height: 1.5;
+}
+
+.main-layout * {
+  text-align: center;
+}
+
+.logo-container img {
+  width: 400px;
+  height: auto;
+}
+
+.title-text {
+  margin-top: 1.3em;
+  color: #343434;
+  font-size: 40px;
+}
+
+.form-login {
+  margin-top: 3em;
+}
+.button {
+  margin-top: 3em;
+}
+
+.button {
+  width: 150px;
+  height: 35px;
+  background-color: #7e7e7e;
+  color: #EFEFEF;
+  border: 0px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 15px;
+  border-radius: 3px;
+  margin-left: 2px;
+  transition: .5s all;
+  box-shadow: 0 5px 6px rgba(0, 0, 0, .094);
+}
+
+.button:hover {
+  background-color: #9f9f9f;
+  cursor: pointer;    
+}
+.button-Edit{
+  
+}
+
+.entreprise-list{
+margin-top: 50px;
+}
