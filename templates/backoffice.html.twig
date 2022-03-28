@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Back Office</title>
+    <link href="ressources/css/BackOffice.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="main-layout">
+        <div class="title">
+          <div class="title-text">
+            Les entreprises
+          </div>
+          
+          </div>
+          <div class="layout-search">
+      <label>Rechercher :</label>
+      <input type="text" id="text_recherche" /></br>
+
+      <div class="button-edit">
+        <button class="button">Ajouter une entreprise</button>
+        <button class="button">Supprimer une entreprise</button>
+        <button class="button">Modifier une entreprise</button>
+      </div>
+
+          {# SECTION Liste de l'entreprise #}
+
+            <div class="table-list-entreprises">
+              <table>
+              <tr>
+                  <th>Raison Sociale</th>
+                  <th>Adresse</th>
+                  <th>Code Postal</th>
+                  <th>Ville</th>
+                  <th>Pays</th>
+                  <th >Option acceptée</th>
+              </tr>
+              </table>
+    </div>
+  </body>
+</html>
