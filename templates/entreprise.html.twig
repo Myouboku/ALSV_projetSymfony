@@ -25,9 +25,17 @@
                   <th>Code Postal</th>
                   <th>Ville</th>
                   <th>Pays</th>
-                  <th>Option acceptée</th>
+                  <th id="last">Option acceptée</th>
               </tr>
-       
+                {% for entreprise in entreprise %}
+                <tr>
+                <td>{{ entreprise.ent_rs }}</td>
+                <td>{{ entreprise.ent_adresse }}</td>
+                <td>{{ entreprise.ent_cp }}</td>
+                <td>{{ entreprise.ent_ville }}</td>
+                <td>{{ entreprise.ent_pays }}</td>
+                </tr>
+                {% endfor %}
               </table>
           </div>
           <div class="form-entreprise-back-button">
