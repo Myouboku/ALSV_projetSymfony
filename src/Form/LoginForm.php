@@ -16,7 +16,7 @@ class Login extends AbstractType
     {
         $builder
             ->add('login', TextType::class)
-            ->add('password', TextType::class)
+            ->add('password', PasswordType::class)
             ->add('submit', SubmitType::class)
             ->getForm();
     }
