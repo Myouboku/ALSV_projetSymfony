@@ -2,8 +2,8 @@
   <html lang="fr">
     <head>
     <meta charset="UTF-8">
-      <title>Liste des entreprises</title>
-      <link href="ressources/css/entreprise.css" rel="stylesheet">
+      <title>Bienvenue sur la liste des entreprises</title>
+      <link href="ressources/css/Entreprise.css" rel="stylesheet">
     </head>
 
     <script src="ressources/js/goBack.js"></script>
@@ -14,14 +14,26 @@
           <div class="title-text">
             Liste des entreprises
           </div>
+          </div>
           {# SECTION Liste de l'entreprise #}
-          <div class="entreprise-list">
+         
+            <div class="table-list-entreprises">
+              <table>
+              <tr>
+                  <th>Raison Sociale</th>
+                  <th>Adresse</th>
+                  <th>Code Postal</th>
+                  <th>Ville</th>
+                  <th>Pays</th>
+                  <th>Option acceptée</th>
+              </tr>
+       
+              </table>
           </div>
           <div class="form-entreprise-back-button">
-           <input type="button" value="retour" id="back-button" onclick="goBack()">
+            <input type="button" value="retour" id="back-button" onclick="goBack()">
           </div>
         </div>
-      </div>
     </body>
   </html>
 
