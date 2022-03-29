@@ -25,17 +25,17 @@ class Personne
     private $per_nom;
 
     /**
-     * @ORM\Column(type="string", length=38, nullable=false)
+     * @ORM\Column(type="string", length=38, nullable=true)
      */
     private $per_prenom;
 
     /**
-     * @ORM\Column(type="string", length=50, nullable=false)
+     * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $per_mail;
 
     /**
-     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $per_tel;
 
