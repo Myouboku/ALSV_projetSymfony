@@ -27,7 +27,17 @@ class AccueilController extends AbstractController {
 
         $username = isset($_POST['login'])?$_POST['login']:'';
         $password = isset($_POST['password'])?$_POST['password']:'';
-        if ($username == 'admin' && $password == 'admin') {
+        
+        // SECTION PS de verif login/mdp
+        $params = array(
+            ':username' => $username,
+            ':password' => $password
+        );
+
+        $result = $doctrine->getConnection()->prepare("CALL PS_Verification_Login(:username, :password)");
+        // !SECTION
+
+        if ($result) {
             $this->addFlash('success', 'Bienvenue');
             return $this->redirectToRoute('Entreprise');
         } else {
