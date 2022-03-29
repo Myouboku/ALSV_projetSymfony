@@ -11,7 +11,21 @@
           <div class="title-text">
             Les entreprises
           </div>
-          
+        </div>
+        <div class="layout-search">
+          <label>Rechercher :</label>
+          <div class="datalist-search">
+            <label for="search-type">rechercher par</label>
+            <select id="search-type" name="search-type">
+              <option value="Raison Sociale">Raison Sociale</option>
+              <option value="address">Adresse</option>
+              <option value="city">Ville</option>
+              <option value="postalCode">Code Postal</option>
+              <option value="country">Pays</option>
+              <option value="tutorLastName">Nom du Tuteur</option>
+              <option value="tutorFirstName">Prenom du Tuteur</option>
+            </select>
+            <input type="text" id="text_recherche"/>
           </div>
           <div class="Layout-Search">
       <label>Rechercher :</label>
@@ -20,11 +34,18 @@
       <div class="button-Edit">
         <button class="button">Ajouter une entreprise</button>
         <button class="button">Supprimer une entreprise</button>
-        <button class="button-E">Modifier une entreprise</button>
-      </div>
+        <button class="button-E">Modifier une entreprise</button>        
+        <div class="button-edit-company">
+        <button  class="button" id="add">Ajouter une entreprise</button>
+        <button class="button" id="delete">Supprimer une entreprise</button>
+        <button class="button" id="edit">Modifier une entreprise</button>
 
+      </div>
+      <div class="users">
           {# SECTION Liste de l'entreprise #}
+
           <div class="entreprise-list">
+
             <div class="table-list-entreprises">
               <table>
               <tr>
@@ -39,7 +60,69 @@
                   
               </tr>
               </table>
+
             </div>
     </div>
+
+              <hr class="line">
+              <div class="container-user">
+                <div class="title-text">
+                  Liste des utilisateurs
+                </div>
+              </div>
+              <div class="layout-search">
+          <label>Rechercher :</label>
+          <div class="datalist-search">
+            <label for="search-type">rechercher par</label>
+            <select id="search-type" name="search-type">
+              <option value="username">Nom d'utilisateur</option>
+              <option value="role">role</option>
+            </select>
+            <input type="text" id="text_recherche" />
+          </div>
+            <div class="button-edit-company">
+              <button  class="button" id="add">Ajouter un utilisateur</button>
+              <button class="button" id="delete">Supprimer un utilisateur</button>
+              <button class="button" id="edit">Modifier un utilisateur</button>
+            </div>
+          </div>
+          <div class="tableau-user">
+            <table>
+              <tr>
+                <th>Nom d'utilisateur</th>
+                <th>Role</th>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="Tuteurs">
+          <div class="title-text">
+            Liste des tuteurs
+          </div>
+          <div class="layout-search">
+          <label>Rechercher :</label>
+          <div class="datalist-search">
+            <label for="search-type">rechercher par</label>
+            <select id="search-type" name="search-type">
+              <option value="lastName">Nom</option>
+              <option value="firstName">Prenom</option>
+            </select>
+            <input type="text" id="text_recherche" />
+          </div>
+            <div class="button-edit-company">
+              <button  class="button" id="add">Ajouter un tuteur</button>
+              <button class="button" id="delete">Supprimer un tuteur</button>
+              <button class="button" id="edit">Modifier un tuteur</button>
+            </div>
+          </div>
+          <div class="tableau-user">
+            <table>
+              <tr>
+                <th>Nom</th>
+                <th>Prenom</th>
+              </tr>
+            </table>
+          </div>
+
   </body>
 </html>

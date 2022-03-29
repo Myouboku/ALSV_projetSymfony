@@ -27,9 +27,15 @@
                   <th>Pays</th>
                   <th id="last">Option accepter</th>
               </tr>
-              <tr>
-                  
-              </tr>
+                {% for entreprise in entreprise %}
+                <tr>
+                <td>{{ entreprise.ent_rs }}</td>
+                <td>{{ entreprise.ent_adresse }}</td>
+                <td>{{ entreprise.ent_cp }}</td>
+                <td>{{ entreprise.ent_ville }}</td>
+                <td>{{ entreprise.ent_pays }}</td>
+                </tr>
+                {% endfor %}
               </table>
             </div>
           </div>
