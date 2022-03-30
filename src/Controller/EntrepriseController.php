@@ -21,7 +21,7 @@ class EntrepriseController extends AbstractController {
   
   public function entreprise(ManagerRegistry $doctrine) 
   {
-    $stmt = $doctrine->getConnection()->prepare('SELECT * FROM entreprise');
+    $stmt = $doctrine->getConnection()->prepare('SELECT ent_rs,ent_adresse,ent_cp,ent_ville,ent_pays FROM entreprise');
     $result = $stmt->execute();
     return $this->render('entreprise.html.twig',[ 'entreprise' => $result->fetchAll()] );
   }

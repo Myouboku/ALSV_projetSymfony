@@ -15,7 +15,6 @@
         <div class="layout-search">
           <label>Rechercher :</label>
           <div class="datalist-search">
-            <label for="search-type">rechercher par</label>
             <select id="search-type" name="search-type">
               <option value="Raison Sociale">Raison Sociale</option>
               <option value="address">Adresse</option>
@@ -31,10 +30,7 @@
       <label>Rechercher :</label>
       <input type="text" id="text_recherche" /></br>
 
-      <div class="button-Edit">
-        <button class="button">Ajouter une entreprise</button>
-        <button class="button">Supprimer une entreprise</button>
-        <button class="button-E">Modifier une entreprise</button>        
+      
         <div class="button-edit-company">
         <button  class="button" id="add">Ajouter une entreprise</button>
         <button class="button" id="delete">Supprimer une entreprise</button>
@@ -57,7 +53,15 @@
                   <th id="last">Option accepter</th>
               </tr>
               <tr>
-                  
+                  {% for entreprise in entreprise %}
+                  <tr>
+                <td>{{ entreprise.ent_rs }}</td>
+                <td>{{ entreprise.ent_adresse }}</td>
+                <td>{{ entreprise.ent_cp }}</td>
+                <td>{{ entreprise.ent_ville }}</td>
+                <td>{{ entreprise.ent_pays }}</td>
+                </tr>
+                {% endfor %}
               </tr>
               </table>
 
@@ -73,7 +77,6 @@
               <div class="layout-search">
           <label>Rechercher :</label>
           <div class="datalist-search">
-            <label for="search-type">rechercher par</label>
             <select id="search-type" name="search-type">
               <option value="username">Nom d'utilisateur</option>
               <option value="role">role</option>
@@ -92,6 +95,13 @@
                 <th>Nom d'utilisateur</th>
                 <th>Role</th>
               </tr>
+              <tr>
+                {% for user in user %}
+                <tr>
+                  <td>{{ user.uti_username }}</td>
+                  
+                </tr>
+                {% endfor %}
             </table>
           </div>
         </div>
@@ -102,7 +112,6 @@
           <div class="layout-search">
           <label>Rechercher :</label>
           <div class="datalist-search">
-            <label for="search-type">rechercher par</label>
             <select id="search-type" name="search-type">
               <option value="lastName">Nom</option>
               <option value="firstName">Prenom</option>
@@ -120,7 +129,18 @@
               <tr>
                 <th>Nom</th>
                 <th>Prenom</th>
+                <th>Email</th>
+                <th>Telephone</th>
               </tr>
+              <tr>
+                {% for personne in personne %}
+                <tr>
+                  <td>{{ personne.per_nom }}</td>
+                  <td>{{ personne.per_prenom }}</td>
+                  <td>{{ personne.per_mail }}</td>
+                  <td>{{ personne.per_tel }}</td>
+                </tr>
+                {% endfor %}
             </table>
           </div>
 
