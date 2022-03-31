@@ -23,7 +23,7 @@ class Utilisateur
     private $UTI_username;
 
     /**
-     * @ORM\Column(type="string", length=38)
+     * @ORM\Column(type="string", length=64)
      */
     private $UTI_mdp;
 

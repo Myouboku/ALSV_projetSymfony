@@ -21,7 +21,7 @@ class AccueilController extends AbstractController
         $form->handleRequest($request);
 
         $username = isset($_POST['login']) ? $_POST['login'] : '';
-        $password = isset($_POST['password']) ? $_POST['password'] : '';
+        $password = isset($_POST['password']) ? hash('sha1', $_POST['password']) : '';
 
         // SECTION PS de verif login/mdp
         $stmt = $doctrine->getConnection()->prepare("call PS_Verification_Login(:username, :password)");
