@@ -5,6 +5,7 @@
 		<title>Liste des entreprises</title>
 		<link href="ressources/css/Entreprise.css" rel="stylesheet">
 		<link href="ressources/img/iconeCampus.ico" rel="shortcut icon">
+		<script src="https://kit.fontawesome.com/825b4a9861.js" crossorigin="anonymous"></script>
 	</head>
 	<script src="ressources/js/goBack.js"></script>
 	<body>
@@ -12,7 +13,7 @@
 			<header class="header">
 				<div class="header-container">
 					<div class="header-logo">
-						<img src="ressources/img/iconeCampus.ico" alt="logo Châtaigneraie">
+						<a href="{{path('accueil')}}"><img src="ressources/img/iconeCampus.ico" alt="logo Châtaigneraie"></a>
 					</div>
 					<div class="header-text right">
 						<div class="header-text-role">
@@ -21,7 +22,7 @@
 						<div class="header-text-name">
 							Romain Duchnok
 						</div>
-					</div>
+					</div>					
 				</div>
 			</header>
 			<div class="title">
@@ -39,7 +40,7 @@
 						<th>Code Postal</th>
 						<th>Ville</th>
 						<th>Pays</th>
-						<th id="last">Option acceptée</th>
+						<th>Option acceptée</th>
 					</tr>
 					{% for entreprise in entreprise %}
 						<tr>
@@ -47,7 +48,7 @@
 							<td>{{ entreprise.ent_adresse }}</td>
 							<td>{{ entreprise.ent_cp }}</td>
 							<td>{{ entreprise.ent_ville }}</td>
-							<td>{{ entreprise.ent_pays }}</td>
+							<td>{{ entreprise.ent_pays }}</td>              
 						</tr>
 					{% endfor %}
 				</table>

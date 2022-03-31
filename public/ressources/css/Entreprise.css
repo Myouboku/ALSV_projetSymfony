@@ -30,6 +30,7 @@ body {
     height: auto;
 }
 
+
 .title-text {
     margin-top: 1.3em;
     color: #343434;
@@ -89,6 +90,7 @@ body {
 
 .table-list-entreprises table {    
     text-align: left;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
 
@@ -98,7 +100,7 @@ body {
 
 .table-list-entreprises th {
     border: 2px solid #343434;
-    padding: 0 5px 0 5px;
+    padding: 2px 20px 2px 20px;
     align-content: center;
 }
 
@@ -138,6 +140,11 @@ body {
 .header-logo img {
     width: 60px;
     height: auto;
+    transition: all .277s;
+}
+
+.header-logo img:hover {
+    transform: scale(1.08);
 }
 
 .header-text {
