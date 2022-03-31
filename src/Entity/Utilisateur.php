@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\UtilisateurRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -22,38 +20,23 @@ class Utilisateur
     /**
      * @ORM\Column(type="string", length=38)
      */
+    private $UTI_username;
+
+    /**
+     * @ORM\Column(type="string", length=64)
+     */
     private $UTI_mdp;
 
     /**
      * @ORM\Column(type="string", length=38)
      */
-    private $UTI_username;
+    private $uti_role;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Role::class, inversedBy="utilisateurs")
-     */
-    private $ROL_id;
 
-    public function __construct()
-    {
-        $this->ROL_id = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getUTIMdp(): ?string
-    {
-        return $this->UTI_mdp;
-    }
-
-    public function setUTIMdp(string $UTI_mdp): self
-    {
-        $this->UTI_mdp = $UTI_mdp;
-
-        return $this;
     }
 
     public function getUTIUsername(): ?string
@@ -68,27 +51,28 @@ class Utilisateur
         return $this;
     }
 
-    /**
-     * @return Collection<int, Role>
-     */
-    public function getROLId(): Collection
+    public function getUTIMdp(): ?string
     {
-        return $this->ROL_id;
+        return $this->UTI_mdp;
     }
 
-    public function addROLId(Role $rOLId): self
+    public function setUTIMdp(string $UTI_mdp): self
     {
-        if (!$this->ROL_id->contains($rOLId)) {
-            $this->ROL_id[] = $rOLId;
-        }
+        $this->UTI_mdp = $UTI_mdp;
 
         return $this;
     }
 
-    public function removeROLId(Role $rOLId): self
+    public function getUtiRole(): ?string
     {
-        $this->ROL_id->removeElement($rOLId);
+        return $this->uti_role;
+    }
+
+    public function setUtiRole(string $uti_role): self
+    {
+        $this->uti_role = $uti_role;
 
         return $this;
     }
+
 }

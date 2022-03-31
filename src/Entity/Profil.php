@@ -20,15 +20,14 @@ class Profil
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=38)
+     * @ORM\Column(type="string", length=255)
      */
     private $PRO_libelle;
 
-    
 
     public function __construct()
     {
-        $this->personnes = new ArrayCollection();
+        $this->personneProfils = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -41,7 +40,7 @@ class Profil
         return $this->PRO_libelle;
     }
 
-    public function setPROLibelle(?string $PRO_libelle): self
+    public function setPROLibelle(string $PRO_libelle): self
     {
         $this->PRO_libelle = $PRO_libelle;
 
@@ -49,29 +48,33 @@ class Profil
     }
 
     /**
-     * @return Collection<int, Personne>
+     * @return Collection<int, PersonneProfil>
      */
-    public function getPersonnes(): Collection
+    public function getPersonneProfils(): Collection
     {
-        return $this->personnes;
+        return $this->personneProfils;
     }
 
-    public function addPersonne(Personne $personne): self
+    public function addPersonneProfil(PersonneProfil $personneProfil): self
     {
-        if (!$this->personnes->contains($personne)) {
-            $this->personnes[] = $personne;
-            $personne->addPROId($this);
+        if (!$this->personneProfils->contains($personneProfil)) {
+            $this->personneProfils[] = $personneProfil;
+            $personneProfil->setProId($this);
         }
 
         return $this;
     }
 
-    public function removePersonne(Personne $personne): self
+    public function removePersonneProfil(PersonneProfil $personneProfil): self
     {
-        if ($this->personnes->removeElement($personne)) {
-            $personne->removePROId($this);
+        if ($this->personneProfils->removeElement($personneProfil)) {
+            // set the owning side to null (unless already changed)
+            if ($personneProfil->getProId() === $this) {
+                $personneProfil->setProId(null);
+            }
         }
 
         return $this;
     }
+
 }
