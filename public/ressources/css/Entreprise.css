@@ -165,3 +165,27 @@ body {
 .header-text-name {
     padding-left: 1em;
 }
+
+.form-entreprise-back-button {
+    margin-top: 3em;
+    margin-bottom: 3em;
+}
+
+.form-entreprise-back-button button {
+    width: 150px;
+    height: 35px;
+    background-color: #7e7e7e;
+    color: #efefef;    
+    border: 0px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 18px;
+    border-radius: 3px;
+    transition: .5s all;
+    box-shadow: 0 5px 6px rgba(0, 0, 0, .094);
+}
+
+.form-entreprise-back-button button:hover {
+    background-color: #9f9f9f; 
+    cursor: pointer;    
+}
