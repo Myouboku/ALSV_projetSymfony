@@ -14,7 +14,9 @@ class BackOfficeController extends AbstractController {
   /**
    * @Route("BackOffice", name="backoffice")
    */
-    public function backoffice(ManagerRegistry $doctrine) {
+
+    public function backoffice(ManagerRegistry $doctrine) 
+    {
     $stmt = $doctrine->getConnection()->prepare('SELECT ent_rs,ent_adresse,ent_cp,ent_ville,ent_pays from entreprise');
     $ListeUser = $doctrine->getConnection()->prepare('SELECT uti_username from utilisateur');
     $ListeProfil = $doctrine->getConnection()->prepare('SELECT per_nom, per_prenom, per_tel, per_mail FROM personne');
@@ -22,7 +24,7 @@ class BackOfficeController extends AbstractController {
     $resultProfil = $ListeProfil->execute();
     $resultUser = $ListeUser->execute();
     return $this->render('backoffice.html.twig',[ 'entreprise' => $result->fetchAll() , 'user' => $resultUser->fetchAll(), 'personne' => $resultProfil->fetchAll()] );
-  }
+   }
 
   public function recherche_entreprise(ManagerRegistry $doctrine)
   {
@@ -32,7 +34,7 @@ class BackOfficeController extends AbstractController {
     switch($type_recherche) 
     {
       case "raisonSociale":
-        $stmt = $doctrine->getConnection()->prepare('SELECT * FROM entreprise');
+        $stmt = $doctrine->getConnection()->prepare('SELECT ent_rs, ent_cp, ent_ville, ent_ville, ent_adresse, ent_pays, opt_libelle FROM entreprise INNER JOIN entreprise_option WHERE ent_rs LIKE "%'.$recherche.'%"');
         $result = $stmt->execute();
         return $this->render('entreprise.html.twig',[ 'entreprise' => $result->fetchAll()] );
         break;
