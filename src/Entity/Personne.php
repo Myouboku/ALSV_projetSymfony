@@ -25,7 +25,7 @@ class Personne
     private $per_nom;
 
     /**
-     * @ORM\Column(type="string", length=38)
+     * @ORM\Column(type="string", length=38, nullable=true)
      */
     private $per_prenom;
 
@@ -35,7 +35,7 @@ class Personne
     private $per_mail;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $per_tel;
 
@@ -44,21 +44,24 @@ class Personne
      */
     private $FON_id;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Profil::class, inversedBy="personnes")
-     */
-    private $PRO_id;
+    
 
     /**
      * @ORM\OneToMany(targetEntity=Entreprise::class, mappedBy="personne")
      */
     private $Ent_id;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Personneprofil::class, mappedBy="pers")
+     */
+    private $personneprofils;
+
     public function __construct()
     {
         $this->FON_id = new ArrayCollection();
         $this->PRO_id = new ArrayCollection();
         $this->Ent_id = new ArrayCollection();
+        $this->personneprofils = new ArrayCollection();
     }
 
 
@@ -187,6 +190,36 @@ class Personne
             // set the owning side to null (unless already changed)
             if ($entId->getPersonne() === $this) {
                 $entId->setPersonne(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Personneprofil>
+     */
+    public function getPersonneprofils(): Collection
+    {
+        return $this->personneprofils;
+    }
+
+    public function addPersonneprofil(Personneprofil $personneprofil): self
+    {
+        if (!$this->personneprofils->contains($personneprofil)) {
+            $this->personneprofils[] = $personneprofil;
+            $personneprofil->setPers($this);
+        }
+
+        return $this;
+    }
+
+    public function removePersonneprofil(Personneprofil $personneprofil): self
+    {
+        if ($this->personneprofils->removeElement($personneprofil)) {
+            // set the owning side to null (unless already changed)
+            if ($personneprofil->getPers() === $this) {
+                $personneprofil->setPers(null);
             }
         }
 

@@ -22,10 +22,10 @@ class EntrepriseOption
     /**
      * @ORM\Column(type="string", length=38)
      */
-    private $opt_libelle;
+    private $OptLibelle;
 
     /**
-     * @ORM\OneToMany(targetEntity=Entreprise::class, mappedBy="opt_id")
+     * @ORM\OneToMany(targetEntity=Entreprise::class, mappedBy="Opt")
      */
     private $entreprises;
 
@@ -41,12 +41,12 @@ class EntrepriseOption
 
     public function getOptLibelle(): ?string
     {
-        return $this->opt_libelle;
+        return $this->OptLibelle;
     }
 
-    public function setOptLibelle(string $opt_libelle): self
+    public function setOptLibelle(string $OptLibelle): self
     {
-        $this->opt_libelle = $opt_libelle;
+        $this->OptLibelle = $OptLibelle;
 
         return $this;
     }
@@ -63,7 +63,7 @@ class EntrepriseOption
     {
         if (!$this->entreprises->contains($entreprise)) {
             $this->entreprises[] = $entreprise;
-            $entreprise->setOptId($this);
+            $entreprise->setOpt($this);
         }
 
         return $this;
@@ -73,8 +73,8 @@ class EntrepriseOption
     {
         if ($this->entreprises->removeElement($entreprise)) {
             // set the owning side to null (unless already changed)
-            if ($entreprise->getOptId() === $this) {
-                $entreprise->setOptId(null);
+            if ($entreprise->getOpt() === $this) {
+                $entreprise->setOpt(null);
             }
         }
 

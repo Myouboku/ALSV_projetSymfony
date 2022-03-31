@@ -24,10 +24,7 @@ class Profil
      */
     private $PRO_libelle;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Personne::class, mappedBy="PRO_id")
-     */
-    private $personnes;
+    
 
     public function __construct()
     {

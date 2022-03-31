@@ -45,19 +45,14 @@ class Entreprise
     private $ENT_pays;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Option::class, inversedBy="entreprises")
-     */
-    private $OPT_id;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Personne::class, inversedBy="Ent_id")
      */
     private $personne;
 
-    public function __construct()
-    {
-        $this->OPT_id = new ArrayCollection();
-    }
+    /**
+     * @ORM\ManyToOne(targetEntity=entrepriseoption::class, inversedBy="entreprises")
+     */
+    private $Opt;
 
     public function getId(): ?int
     {
@@ -124,29 +119,7 @@ class Entreprise
         return $this;
     }
 
-    /**
-     * @return Collection<int, Option>
-     */
-    public function getOPTId(): Collection
-    {
-        return $this->OPT_id;
-    }
-
-    public function addOPTId(Option $oPTId): self
-    {
-        if (!$this->OPT_id->contains($oPTId)) {
-            $this->OPT_id[] = $oPTId;
-        }
-
-        return $this;
-    }
-
-    public function removeOPTId(Option $oPTId): self
-    {
-        $this->OPT_id->removeElement($oPTId);
-
-        return $this;
-    }
+    
 
     public function getPersonne(): ?Personne
     {
@@ -156,6 +129,18 @@ class Entreprise
     public function setPersonne(?Personne $personne): self
     {
         $this->personne = $personne;
+
+        return $this;
+    }
+
+    public function getOpt(): ?entrepriseoption
+    {
+        return $this->Opt;
+    }
+
+    public function setOpt(?entrepriseoption $Opt): self
+    {
+        $this->Opt = $Opt;
 
         return $this;
     }

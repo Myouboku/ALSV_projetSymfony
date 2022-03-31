@@ -2,30 +2,30 @@
 
 namespace App\Repository;
 
-use App\Entity\Annee;
+use App\Entity\Personneprofil;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Annee|null find($id, $lockMode = null, $lockVersion = null)
- * @method Annee|null findOneBy(array $criteria, array $orderBy = null)
- * @method Annee[]    findAll()
- * @method Annee[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Personneprofil|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Personneprofil|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Personneprofil[]    findAll()
+ * @method Personneprofil[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class AnneeRepository extends ServiceEntityRepository
+class PersonneprofilRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Annee::class);
+        parent::__construct($registry, Personneprofil::class);
     }
 
     /**
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function add(Annee $entity, bool $flush = true): void
+    public function add(Personneprofil $entity, bool $flush = true): void
     {
         $this->_em->persist($entity);
         if ($flush) {
@@ -37,7 +37,7 @@ class AnneeRepository extends ServiceEntityRepository
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function remove(Annee $entity, bool $flush = true): void
+    public function remove(Personneprofil $entity, bool $flush = true): void
     {
         $this->_em->remove($entity);
         if ($flush) {
@@ -46,15 +46,15 @@ class AnneeRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Annee[] Returns an array of Annee objects
+    //  * @return Personneprofil[] Returns an array of Personneprofil objects
     //  */
     /*
     public function findByExampleField($value)
     {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.exampleField = :val')
             ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
+            ->orderBy('p.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
@@ -63,10 +63,10 @@ class AnneeRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Annee
+    public function findOneBySomeField($value): ?Personneprofil
     {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.exampleField = :val')
             ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult()
