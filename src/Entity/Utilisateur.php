@@ -20,7 +20,7 @@ class Utilisateur
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=38)
+     * @ORM\Column(type="string", length=64)
      */
     private $UTI_mdp;
 
