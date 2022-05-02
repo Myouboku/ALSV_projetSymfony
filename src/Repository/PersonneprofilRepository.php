@@ -2,30 +2,30 @@
 
 namespace App\Repository;
 
-use App\Entity\Personneprofil;
+use App\Entity\PersonneProfil;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Personneprofil|null find($id, $lockMode = null, $lockVersion = null)
- * @method Personneprofil|null findOneBy(array $criteria, array $orderBy = null)
- * @method Personneprofil[]    findAll()
- * @method Personneprofil[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method PersonneProfil|null find($id, $lockMode = null, $lockVersion = null)
+ * @method PersonneProfil|null findOneBy(array $criteria, array $orderBy = null)
+ * @method PersonneProfil[]    findAll()
+ * @method PersonneProfil[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class PersonneprofilRepository extends ServiceEntityRepository
+class PersonneProfilRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Personneprofil::class);
+        parent::__construct($registry, PersonneProfil::class);
     }
 
     /**
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function add(Personneprofil $entity, bool $flush = true): void
+    public function add(PersonneProfil $entity, bool $flush = true): void
     {
         $this->_em->persist($entity);
         if ($flush) {
@@ -37,7 +37,7 @@ class PersonneprofilRepository extends ServiceEntityRepository
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function remove(Personneprofil $entity, bool $flush = true): void
+    public function remove(PersonneProfil $entity, bool $flush = true): void
     {
         $this->_em->remove($entity);
         if ($flush) {
@@ -46,7 +46,7 @@ class PersonneprofilRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Personneprofil[] Returns an array of Personneprofil objects
+    //  * @return PersonneProfil[] Returns an array of PersonneProfil objects
     //  */
     /*
     public function findByExampleField($value)
@@ -63,7 +63,7 @@ class PersonneprofilRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Personneprofil
+    public function findOneBySomeField($value): ?PersonneProfil
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.exampleField = :val')

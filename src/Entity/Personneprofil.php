@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\PersonneprofilRepository;
+use App\Repository\PersonneProfilRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=PersonneprofilRepository::class)
+ * @ORM\Entity(repositoryClass=PersonneProfilRepository::class)
  */
-class Personneprofil
+class PersonneProfil
 {
     /**
      * @ORM\Id
@@ -18,59 +18,58 @@ class Personneprofil
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity=personne::class, inversedBy="personneProfils")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $per_id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=profil::class, inversedBy="personneProfils")
+     */
+    private $pro_id;
+
+    /**
      * @ORM\Column(type="integer")
      */
-    private $annnee;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=personne::class, inversedBy="personneprofils")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $pers;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=profil::class, inversedBy="personneprofils")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $pro;
+    private $annee;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getAnnnee(): ?int
+    public function getPerId(): ?personne
     {
-        return $this->annnee;
+        return $this->per_id;
     }
 
-    public function setAnnnee(int $annnee): self
+    public function setPerId(?personne $per_id): self
     {
-        $this->annnee = $annnee;
+        $this->per_id = $per_id;
 
         return $this;
     }
 
-    public function getPers(): ?personne
+    public function getProId(): ?profil
     {
-        return $this->pers;
+        return $this->pro_id;
     }
 
-    public function setPers(?personne $pers): self
+    public function setProId(?profil $pro_id): self
     {
-        $this->pers = $pers;
+        $this->pro_id = $pro_id;
 
         return $this;
     }
 
-    public function getPro(): ?profil
+    public function getAnnee(): ?int
     {
-        return $this->pro;
+        return $this->annee;
     }
 
-    public function setPro(?profil $pro): self
+    public function setAnnee(int $annee): self
     {
-        $this->pro = $pro;
+        $this->annee = $annee;
 
         return $this;
     }

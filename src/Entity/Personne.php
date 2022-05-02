@@ -62,11 +62,8 @@ class Personne
         $this->FON_id = new ArrayCollection();
         $this->PRO_id = new ArrayCollection();
         $this->Ent_id = new ArrayCollection();
-
         $this->personneprofils = new ArrayCollection();
-
-
-
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -235,6 +232,4 @@ class Personne
 
         return $this;
     }
-
-
-
+}
