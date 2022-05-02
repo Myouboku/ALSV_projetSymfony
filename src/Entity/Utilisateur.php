@@ -28,7 +28,7 @@ class Utilisateur
     private $UTI_mdp;
 
     /**
-     * @ORM\Column(type="string", length=38)
+     * @ORM\Column(type="string", length=1, options={"fixed" = true})
      */
     private $uti_role;
 
