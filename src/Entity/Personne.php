@@ -30,7 +30,7 @@ class Personne
     private $per_prenom;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $per_mail;
 
@@ -40,16 +40,17 @@ class Personne
     private $per_tel;
 
     /**
-     * @ORM\ManyToMany(targetEntity=fonction::class, inversedBy="personnes")
+     * @ORM\ManyToMany(targetEntity=fonction::class, inversedBy="personnes", )
      */
     private $FON_id;
 
-    
 
     /**
-     * @ORM\OneToMany(targetEntity=Entreprise::class, mappedBy="personne")
+     * @ORM\OneToMany(targetEntity=PersonneProfil::class, mappedBy="per_id")
      */
-    private $Ent_id;
+    private $personneProfils;
+
+
 
     /**
      * @ORM\OneToMany(targetEntity=Personneprofil::class, mappedBy="pers")
@@ -61,8 +62,9 @@ class Personne
         $this->FON_id = new ArrayCollection();
         $this->PRO_id = new ArrayCollection();
         $this->Ent_id = new ArrayCollection();
+
         $this->personneprofils = new ArrayCollection();
-    }
+
 
 
     public function getId(): ?int
@@ -142,29 +144,6 @@ class Personne
         return $this;
     }
 
-    /**
-     * @return Collection<int, Profil>
-     */
-    public function getPROId(): Collection
-    {
-        return $this->PRO_id;
-    }
-
-    public function addPROId(Profil $pROId): self
-    {
-        if (!$this->PRO_id->contains($pROId)) {
-            $this->PRO_id[] = $pROId;
-        }
-
-        return $this;
-    }
-
-    public function removePROId(Profil $pROId): self
-    {
-        $this->PRO_id->removeElement($pROId);
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Entreprise>
@@ -197,6 +176,37 @@ class Personne
     }
 
     /**
+     * @return Collection<int, PersonneProfil>
+     */
+    public function getPersonneProfils(): Collection
+    {
+        return $this->personneProfils;
+    }
+
+    public function addPersonneProfil(PersonneProfil $personneProfil): self
+    {
+        if (!$this->personneProfils->contains($personneProfil)) {
+            $this->personneProfils[] = $personneProfil;
+            $personneProfil->setPerId($this);
+        }
+
+        return $this;
+    }
+
+    public function removePersonneProfil(PersonneProfil $personneProfil): self
+    {
+        if ($this->personneProfils->removeElement($personneProfil)) {
+            // set the owning side to null (unless already changed)
+            if ($personneProfil->getPerId() === $this) {
+                $personneProfil->setPerId(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+    /**
      * @return Collection<int, Personneprofil>
      */
     public function getPersonneprofils(): Collection
@@ -227,4 +237,4 @@ class Personne
     }
 
 
-}
+

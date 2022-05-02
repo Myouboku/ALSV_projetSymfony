@@ -12,13 +12,11 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\Persistence\ManagerRegistry;
 
+
 class EntrepriseController extends AbstractController {
-
   /**
-    * @Route("ListeEntreprise", name="Entreprise")
+   * @Route("ListeEntreprise", name="Entreprise")
    */
-
-  
   public function entreprise(ManagerRegistry $doctrine) 
   {
     $stmt = $doctrine->getConnection()->prepare('SELECT ent_rs,ent_adresse,ent_cp,ent_ville,ent_pays FROM entreprise');

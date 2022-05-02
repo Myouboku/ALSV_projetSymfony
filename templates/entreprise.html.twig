@@ -1,48 +1,61 @@
 <!DOCTYPE html>
-  <html lang="fr">
-    <head>
-    <meta charset="UTF-8">
-      <title>Bienvenue sur la liste des entreprises</title>
-      <link href="ressources/css/Entreprise.css" rel="stylesheet">
-    </head>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<title>Liste des entreprises</title>
+		<link href="ressources/css/Entreprise.css" rel="stylesheet">
+		<link href="ressources/img/iconeCampus.ico" rel="shortcut icon">
+		<script src="https://kit.fontawesome.com/825b4a9861.js" crossorigin="anonymous"></script>
+	</head>
+	<script src="ressources/js/goBack.js"></script>
+	<body>
+		<div class="main-layout">
+			<header class="header">
+				<div class="header-container">
+					<div class="header-logo">
+						<a href="{{path('accueil')}}"><img src="ressources/img/iconeCampus.ico" alt="logo Châtaigneraie"></a>
+					</div>
+					<div class="header-text right">
+						<div class="header-text-role">
+							Admin
+						</div>
+						<div class="header-text-name">
+							Romain Duchnok
+						</div>
+					</div>					
+				</div>
+			</header>
+			<div class="title">
+				<div class="title-text">
+					Liste des entreprises
+				</div>
+			</div>
+			{# SECTION Liste de l'entreprise #}
 
-    <script src="ressources/js/goBack.js"></script>
-
-    <body>
-      <div class="main-layout">
-        <div class="title">
-          <div class="title-text">
-            Liste des entreprises
-          </div>
-          </div>
-          {# SECTION Liste de l'entreprise #}
-          <div class="entreprise-list">
-            <div class="table-list-entreprises">
-              <table>
-              <tr>
-                  <th>Raison Sociale</th>
-                  <th>Adresse</th>
-                  <th>Code Postal</th>
-                  <th>Ville</th>
-                  <th>Pays</th>
-                  <th id="last">Option accepter</th>
-              </tr>
-                {% for entreprise in entreprise %}
-                <tr>
-                <td>{{ entreprise.ent_rs }}</td>
-                <td>{{ entreprise.ent_adresse }}</td>
-                <td>{{ entreprise.ent_cp }}</td>
-                <td>{{ entreprise.ent_ville }}</td>
-                <td>{{ entreprise.ent_pays }}</td>
-                </tr>
-                {% endfor %}
-              </table>
-            </div>
-          </div>
-          <div class="form-entreprise-back-button">
-            <input type="button" value="retour" id="back-button" onclick="goBack()">
-          </div>
-        </div>
-    </body>
-  </html>
-
+			<div class="table-list-entreprises">
+				<table>
+					<tr>
+						<th>Raison Sociale</th>
+						<th>Adresse</th>
+						<th>Code Postal</th>
+						<th>Ville</th>
+						<th>Pays</th>
+						<th>Option acceptée</th>
+					</tr>
+					{% for entreprise in entreprise %}
+						<tr>
+							<td>{{ entreprise.ent_rs }}</td>
+							<td>{{ entreprise.ent_adresse }}</td>
+							<td>{{ entreprise.ent_cp }}</td>
+							<td>{{ entreprise.ent_ville }}</td>
+							<td>{{ entreprise.ent_pays }}</td>
+						</tr>
+					{% endfor %}
+				</table>
+			</div>
+			<div class="form-entreprise-back-button">
+				<button value="Accueil" id="back-button" onclick="goBack()">Accueil</button>
+			</div>
+		</header>
+	</body>
+</html>

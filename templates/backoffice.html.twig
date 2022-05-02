@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Bienvenue sur le Back-Office</title>
+    <title>Back Office</title>
     <link href="ressources/css/BackOffice.css" rel="stylesheet">
   </head>
   <body>
@@ -16,7 +16,7 @@
           <label>Rechercher :</label>
           <div class="datalist-search">
             <select id="search-type" name="search-type">
-              <option value="Raison Sociale">Raison Sociale</option>
+              <option value="raisonSociale">Raison Sociale</option>
               <option value="address">Adresse</option>
               <option value="city">Ville</option>
               <option value="postalCode">Code Postal</option>
@@ -24,18 +24,16 @@
               <option value="tutorLastName">Nom du Tuteur</option>
               <option value="tutorFirstName">Prenom du Tuteur</option>
             </select>
-            <input type="text" id="text_recherche"/>
+            <input autofocus type="text" id="text_recherche"/>
           </div>
-          <div class="Layout-Search">
+          <div class="layout-search">
       <label>Rechercher :</label>
       <input type="text" id="text_recherche" /></br>
 
-      
         <div class="button-edit-company">
         <button  class="button" id="add">Ajouter une entreprise</button>
         <button class="button" id="delete">Supprimer une entreprise</button>
         <button class="button" id="edit">Modifier une entreprise</button>
-
       </div>
       <div class="users">
           {# SECTION Liste de l'entreprise #}
@@ -50,6 +48,7 @@
                   <th>Code Postal</th>
                   <th>Ville</th>
                   <th>Pays</th>
+
                   <th id="last">Option accepter</th>
               </tr>
               <tr>
@@ -62,12 +61,10 @@
                 <td>{{ entreprise.ent_pays }}</td>
                 <td>{{ entreprise.opt_libelle }}</td>
                 {% endfor %}
+
               </tr>
               </table>
-
-            </div>
-    </div>
-
+             </div>
               <hr class="line">
               <div class="container-user">
                 <div class="title-text">
@@ -81,7 +78,7 @@
               <option value="username">Nom d'utilisateur</option>
               <option value="role">role</option>
             </select>
-            <input type="text" id="text_recherche" />
+            <input type="text" id="textRecherche" />
           </div>
             <div class="button-edit-company">
               <button  class="button" id="add">Ajouter un utilisateur</button>
