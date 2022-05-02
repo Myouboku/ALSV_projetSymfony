@@ -64,7 +64,7 @@ class Personne
         $this->Ent_id = new ArrayCollection();
 
         $this->personneprofils = new ArrayCollection();
-
+    }
 
 
     public function getId(): ?int
