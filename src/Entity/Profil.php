@@ -24,12 +24,6 @@ class Profil
      */
     private $PRO_libelle;
 
-    /**
-     * @ORM\OneToMany(targetEntity=PersonneProfil::class, mappedBy="pro_id")
-     */
-    private $personneProfils;
-
-
 
     public function __construct()
     {
