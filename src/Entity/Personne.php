@@ -64,7 +64,7 @@ class Personne
         $this->Ent_id = new ArrayCollection();
 
         $this->personneprofils = new ArrayCollection();
-
+    }
 
 
     public function getId(): ?int
@@ -204,37 +204,4 @@ class Personne
 
         return $this;
     }
-
-
-    /**
-     * @return Collection<int, Personneprofil>
-     */
-    public function getPersonneprofils(): Collection
-    {
-        return $this->personneprofils;
-    }
-
-    public function addPersonneprofil(Personneprofil $personneprofil): self
-    {
-        if (!$this->personneprofils->contains($personneprofil)) {
-            $this->personneprofils[] = $personneprofil;
-            $personneprofil->setPers($this);
-        }
-
-        return $this;
-    }
-
-    public function removePersonneprofil(Personneprofil $personneprofil): self
-    {
-        if ($this->personneprofils->removeElement($personneprofil)) {
-            // set the owning side to null (unless already changed)
-            if ($personneprofil->getPers() === $this) {
-                $personneprofil->setPers(null);
-            }
-        }
-
-        return $this;
-    }
-
-
-
+}
