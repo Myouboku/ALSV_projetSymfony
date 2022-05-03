@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\PersonneprofilRepository;
+use App\Repository\PersonneProfilRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=PersonneprofilRepository::class)
+ * @ORM\Entity(repositoryClass=PersonneProfilRepository::class)
  */
-class Personneprofil
+class PersonneProfil
 {
     /**
      * @ORM\Id
@@ -20,13 +20,13 @@ class Personneprofil
     /**
      * @ORM\Column(type="integer")
      */
-    private $annnee;
+    private $annee;
 
     /**
      * @ORM\ManyToOne(targetEntity=personne::class, inversedBy="personneprofils")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $pers;
+    private $per;
 
     /**
      * @ORM\ManyToOne(targetEntity=profil::class, inversedBy="personneprofils")
@@ -39,26 +39,26 @@ class Personneprofil
         return $this->id;
     }
 
-    public function getAnnnee(): ?int
+    public function getAnnee(): ?int
     {
-        return $this->annnee;
+        return $this->annee;
     }
 
-    public function setAnnnee(int $annnee): self
+    public function setAnnee(int $annee): self
     {
-        $this->annnee = $annnee;
+        $this->annee = $annee;
 
         return $this;
     }
 
     public function getPers(): ?personne
     {
-        return $this->pers;
+        return $this->per;
     }
 
-    public function setPers(?personne $pers): self
+    public function setPer(?personne $per): self
     {
-        $this->pers = $pers;
+        $this->per = $per;
 
         return $this;
     }
