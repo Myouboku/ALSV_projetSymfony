@@ -21,12 +21,12 @@ class PersonneProfil
      * @ORM\ManyToOne(targetEntity=personne::class, inversedBy="personneProfils")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $per_id;
+    private $per;
 
     /**
      * @ORM\ManyToOne(targetEntity=profil::class, inversedBy="personneProfils")
      */
-    private $pro_id;
+    private $pro;
 
     /**
      * @ORM\Column(type="integer")
@@ -40,24 +40,24 @@ class PersonneProfil
 
     public function getPerId(): ?personne
     {
-        return $this->per_id;
+        return $this->per;
     }
 
-    public function setPerId(?personne $per_id): self
+    public function setPerId(?personne $per): self
     {
-        $this->per_id = $per_id;
+        $this->per = $per;
 
         return $this;
     }
 
     public function getProId(): ?profil
     {
-        return $this->pro_id;
+        return $this->pro;
     }
 
-    public function setProId(?profil $pro_id): self
+    public function setProId(?profil $pro): self
     {
-        $this->pro_id = $pro_id;
+        $this->pro = $pro;
 
         return $this;
     }
@@ -74,4 +74,3 @@ class PersonneProfil
         return $this;
     }
 }
-
