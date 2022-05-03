@@ -21,7 +21,7 @@ class AccueilController extends AbstractController
         $form->handleRequest($request);
 
         $username = isset($_POST['login']) ? $_POST['login'] : '';
-        $password = isset($_POST['password']) ? hash('sha1', $_POST['password']) : '';
+        $password = isset($_POST['password']) ? $_POST['password'] : '';
 
         // SECTION PS de verif login/mdp
         $stmt = $doctrine->getConnection()->prepare("call PS_Verification_Login(:username, :password)");
@@ -30,11 +30,13 @@ class AccueilController extends AbstractController
         $result = $stmt->execute();
         // !SECTION
 
-        if ($result->fetchAll()[0]['result'] === "1") {
-            $this->addFlash('success', 'Bienvenue');
-            return $this->redirectToRoute('Entreprise');
-        } else {
-            $this->addFlash('error', "Nom d'Utilisateur ou mot de passe incorrect");
+        $datas = $result->fetchAll();
+
+        if ($datas != null) {
+            if ($datas[0]['UTI_ROLE'] === "A")
+                return $this->redirectToRoute('backoffice');
+            else
+                return $this->redirectToRoute('Entreprise');
         }
 
         return $this->render('accueil.html.twig', [
