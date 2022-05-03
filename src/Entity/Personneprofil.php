@@ -18,25 +18,48 @@ class PersonneProfil
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity=personne::class, inversedBy="personneProfils")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $per_id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=profil::class, inversedBy="personneProfils")
+     */
+    private $pro_id;
+
+    /**
      * @ORM\Column(type="integer")
      */
     private $annee;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=personne::class, inversedBy="personneprofils")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $per;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=profil::class, inversedBy="personneprofils")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $pro;
-
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getPerId(): ?personne
+    {
+        return $this->per_id;
+    }
+
+    public function setPerId(?personne $per_id): self
+    {
+        $this->per_id = $per_id;
+
+        return $this;
+    }
+
+    public function getProId(): ?profil
+    {
+        return $this->pro_id;
+    }
+
+    public function setProId(?profil $pro_id): self
+    {
+        $this->pro_id = $pro_id;
+
+        return $this;
     }
 
     public function getAnnee(): ?int
@@ -47,30 +70,6 @@ class PersonneProfil
     public function setAnnee(int $annee): self
     {
         $this->annee = $annee;
-
-        return $this;
-    }
-
-    public function getPers(): ?personne
-    {
-        return $this->per;
-    }
-
-    public function setPer(?personne $per): self
-    {
-        $this->per = $per;
-
-        return $this;
-    }
-
-    public function getPro(): ?profil
-    {
-        return $this->pro;
-    }
-
-    public function setPro(?profil $pro): self
-    {
-        $this->pro = $pro;
 
         return $this;
     }
