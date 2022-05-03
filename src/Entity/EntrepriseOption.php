@@ -2,16 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\OptionRepository;
+use App\Repository\EntrepriseOptionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=OptionRepository::class)
- * @ORM\Table(name="`option`")
+ * @ORM\Entity(repositoryClass=EntrepriseOptionRepository::class)
  */
-class Option
+class EntrepriseOption
 {
     /**
      * @ORM\Id
@@ -23,10 +22,10 @@ class Option
     /**
      * @ORM\Column(type="string", length=38)
      */
-    private $OPT_libelle;
+    private $OptLibelle;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Entreprise::class, mappedBy="OPT_id")
+     * @ORM\OneToMany(targetEntity=Entreprise::class, mappedBy="Opt")
      */
     private $entreprises;
 
@@ -40,14 +39,14 @@ class Option
         return $this->id;
     }
 
-    public function getOPTLibelle(): ?string
+    public function getOptLibelle(): ?string
     {
-        return $this->OPT_libelle;
+        return $this->OptLibelle;
     }
 
-    public function setOPTLibelle(string $OPT_libelle): self
+    public function setOptLibelle(string $OptLibelle): self
     {
-        $this->OPT_libelle = $OPT_libelle;
+        $this->OptLibelle = $OptLibelle;
 
         return $this;
     }
@@ -64,7 +63,7 @@ class Option
     {
         if (!$this->entreprises->contains($entreprise)) {
             $this->entreprises[] = $entreprise;
-            $entreprise->addOPTId($this);
+            $entreprise->setOpt($this);
         }
 
         return $this;
@@ -73,7 +72,10 @@ class Option
     public function removeEntreprise(Entreprise $entreprise): self
     {
         if ($this->entreprises->removeElement($entreprise)) {
-            $entreprise->removeOPTId($this);
+            // set the owning side to null (unless already changed)
+            if ($entreprise->getOpt() === $this) {
+                $entreprise->setOpt(null);
+            }
         }
 
         return $this;

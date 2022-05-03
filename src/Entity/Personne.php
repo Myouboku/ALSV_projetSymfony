@@ -44,10 +44,6 @@ class Personne
      */
     private $FON_id;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Entreprise::class, mappedBy="personne")
-     */
-    private $Ent_id;
 
     /**
      * @ORM\OneToMany(targetEntity=PersonneProfil::class, mappedBy="per_id")
@@ -56,13 +52,18 @@ class Personne
 
 
 
+    /**
+     * @ORM\OneToMany(targetEntity=Personneprofil::class, mappedBy="pers")
+     */
+    private $personneprofils;
+
     public function __construct()
     {
         $this->FON_id = new ArrayCollection();
         $this->PRO_id = new ArrayCollection();
         $this->Ent_id = new ArrayCollection();
-        $this->personeProfils = new ArrayCollection();
-        $this->personneProfils = new ArrayCollection();
+
+        $this->personneprofils = new ArrayCollection();
     }
 
 
@@ -172,13 +173,5 @@ class Personne
         }
 
         return $this;
-    }
-
-    /**
-     * @return Collection<int, PersonneProfil>
-     */
-    public function getPersonneProfils(): Collection
-    {
-        return $this->personneProfils;
     }
 }

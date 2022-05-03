@@ -2,30 +2,30 @@
 
 namespace App\Repository;
 
-use App\Entity\Option;
+use App\Entity\EntrepriseOption;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Option|null find($id, $lockMode = null, $lockVersion = null)
- * @method Option|null findOneBy(array $criteria, array $orderBy = null)
- * @method Option[]    findAll()
- * @method Option[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method EntrepriseOption|null find($id, $lockMode = null, $lockVersion = null)
+ * @method EntrepriseOption|null findOneBy(array $criteria, array $orderBy = null)
+ * @method EntrepriseOption[]    findAll()
+ * @method EntrepriseOption[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class OptionRepository extends ServiceEntityRepository
+class EntrepriseOptionRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Option::class);
+        parent::__construct($registry, EntrepriseOption::class);
     }
 
     /**
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function add(Option $entity, bool $flush = true): void
+    public function add(EntrepriseOption $entity, bool $flush = true): void
     {
         $this->_em->persist($entity);
         if ($flush) {
@@ -37,7 +37,7 @@ class OptionRepository extends ServiceEntityRepository
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function remove(Option $entity, bool $flush = true): void
+    public function remove(EntrepriseOption $entity, bool $flush = true): void
     {
         $this->_em->remove($entity);
         if ($flush) {
@@ -46,15 +46,15 @@ class OptionRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Option[] Returns an array of Option objects
+    //  * @return EntrepriseOption[] Returns an array of EntrepriseOption objects
     //  */
     /*
     public function findByExampleField($value)
     {
-        return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.exampleField = :val')
             ->setParameter('val', $value)
-            ->orderBy('o.id', 'ASC')
+            ->orderBy('e.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
@@ -63,10 +63,10 @@ class OptionRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Option
+    public function findOneBySomeField($value): ?EntrepriseOption
     {
-        return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.exampleField = :val')
             ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult()
