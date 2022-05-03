@@ -37,8 +37,6 @@ class AccueilController extends AbstractController
                 return $this->redirectToRoute('backoffice');
             }
             return $this->redirectToRoute('Entreprise');
-        } else {
-            var_dump('error', "Nom d'Utilisateur ou mot de passe incorrect");
         }
 
         return $this->render('accueil.html.twig', [
