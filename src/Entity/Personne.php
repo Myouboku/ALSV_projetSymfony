@@ -181,26 +181,4 @@ class Personne
     {
         return $this->personneProfils;
     }
-
-    public function addPersonneProfil(PersonneProfil $personneProfil): self
-    {
-        if (!$this->personneProfils->contains($personneProfil)) {
-            $this->personneProfils[] = $personneProfil;
-            $personneProfil->setPerId($this);
-        }
-
-        return $this;
-    }
-
-    public function removePersonneProfil(PersonneProfil $personneProfil): self
-    {
-        if ($this->personneProfils->removeElement($personneProfil)) {
-            // set the owning side to null (unless already changed)
-            if ($personneProfil->getPerId() === $this) {
-                $personneProfil->setPerId(null);
-            }
-        }
-
-        return $this;
-    }
 }

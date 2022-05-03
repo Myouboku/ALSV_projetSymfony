@@ -33,10 +33,10 @@ class AccueilController extends AbstractController
         $datas = $result->fetchAll();
 
         if ($datas != null) {
-            if ($datas[0]['UTI_ROLE'] === "A") {
+            if ($datas[0]['UTI_ROLE'] === "A")
                 return $this->redirectToRoute('backoffice');
-            }
-            return $this->redirectToRoute('Entreprise');
+            else
+                return $this->redirectToRoute('Entreprise');
         }
 
         return $this->render('accueil.html.twig', [
