@@ -18,7 +18,7 @@ class BackOfficeController extends AbstractController {
     $stmt = $doctrine->getConnection()->prepare('SELECT entreprise.id,ent_rs,ent_adresse,ent_cp,ent_ville,ent_pays, ifNull(opt_libelle, "Pas option") as opt_libelle from entreprise LEFT OUTER join entreprise_option on entreprise.opt_id = entreprise_option.id;');
     $ListeUser = $doctrine->getConnection()->prepare('SELECT uti_username from utilisateur');
     $ListeProfil = $doctrine->getConnection()->prepare('SELECT personne.id,per_nom, per_prenom, per_tel, per_mail FROM personne');
-    $result = $stmt->execute();
+    $result = $stmt->execute(); 
     $resultProfil = $ListeProfil->execute();
     $resultUser = $ListeUser->execute();
     return $this->render('backoffice.html.twig',[ 'entreprise' => $result->fetchAll() , 'user' => $resultUser->fetchAll(), 'personne' => $resultProfil->fetchAll()]);
