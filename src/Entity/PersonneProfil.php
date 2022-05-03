@@ -74,3 +74,4 @@ class PersonneProfil
         return $this;
     }
 }
+
