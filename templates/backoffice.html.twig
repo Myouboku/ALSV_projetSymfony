@@ -41,7 +41,7 @@
           <div class="entreprise-list">
 
             <div class="table-list-entreprises">
-              <table>
+              <table>kkk
               <tr>
                   <th>Raison Sociale</th>
                   <th>Adresse</th>
@@ -60,6 +60,8 @@
                 <td>{{ entreprise.ent_ville }}</td>
                 <td>{{ entreprise.ent_pays }}</td>
                 <td>{{ entreprise.opt_libelle }}</td>
+                <td><input type="radio" name="Entreprise-id" value="{{ entreprise.id }}"></td>
+                </tr>
                 {% endfor %}
 
               </tr>
@@ -81,7 +83,7 @@
             <input type="text" id="textRecherche" />
           </div>
             <div class="button-edit-company">
-              <button  class="button" id="add">Ajouter un utilisateur</button>
+              <button class="button" id="add">Ajouter un utilisateur</button>
               <button class="button" id="delete">Supprimer un utilisateur</button>
               <button class="button" id="edit">Modifier un utilisateur</button>
             </div>
@@ -136,10 +138,10 @@
                   <td>{{ personne.per_prenom }}</td>
                   <td>{{ personne.per_mail }}</td>
                   <td>{{ personne.per_tel }}</td>
+                  <td><input type="radio" name="Personne-id" value="{{ personne.id }}"></td>
                 </tr>
                 {% endfor %}
             </table>
           </div>
-
   </body>
 </html>

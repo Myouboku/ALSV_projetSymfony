@@ -19,7 +19,7 @@ class EntrepriseController extends AbstractController {
    */
   public function entreprise(ManagerRegistry $doctrine) 
   {
-    $stmt = $doctrine->getConnection()->prepare('SELECT ent_rs,ent_adresse,ent_cp,ent_ville,ent_pays FROM entreprise');
+    $stmt = $doctrine->getConnection()->prepare('SELECT ent_rs,ent_adresse,ent_cp,ent_ville,ent_pays, ifNull(opt_libelle, "Pas option") as opt_libelle from entreprise LEFT OUTER join entreprise_option on entreprise.opt_id = entreprise_option.id;');
     $result = $stmt->execute();
     return $this->render('entreprise.html.twig',[ 'entreprise' => $result->fetchAll()] );
   }
