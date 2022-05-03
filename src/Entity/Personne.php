@@ -173,5 +173,5 @@ class Personne
         }
 
         return $this;
-    }    
+    }
 }
