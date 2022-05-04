@@ -18,7 +18,7 @@ body {
 
 /* TODO bandeau flex pour logo, infos utilisateurs et boutons de navigation */
 .main-layout {    
-    margin-top: 6em;
+    margin-top: 5em;
     line-height: 1.5;
 }
 

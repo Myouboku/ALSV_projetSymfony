@@ -12,13 +12,18 @@ body {
 
 /* TODO bandeau flex pour logo, infos utilisateurs et boutons de navigation */
 .main-layout {    
-  margin-top: 7em;
+  margin-top: 5em;
   line-height: 1.5;
 }
 
-.main-layout * {
-  text-align: center;
+/* center the div */
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
+
+
 
 .logo-container img {
   width: 400px;
@@ -26,7 +31,7 @@ body {
 }
 
 .title-text {
-  margin-top: 1.3em;
+  margin-top: 50px;
   color: #343434;
   font-size: 40px;
 }
@@ -58,6 +63,91 @@ body {
   cursor: pointer;    
 }
 
-.entreprise-list{
+.utilisateur, .entreprise, .tuteur {  
+  display: none;
+}
+
+.entreprise-list, .utilisateur-list, .tuteur-list {
+ 
 margin-top: 50px;
 }
+
+.table-list-entreprises table tr:nth-child(even), .table-list-utilisateurs table tr:nth-child(even), .table-list-tuteurs table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.table-list-entreprises table tr th, .table-list-utilisateurs table tr th, .table-list-tuteurs table tr th {
+  
+  border: 2px solid #343434;
+  padding: 2px 20px 2px 20px;
+}
+
+.table-list-entreprises, .table-list-utilisateurs, .table-list-tuteurs {
+  border: 2px solid #343434;
+  max-width: max-content;
+  margin: auto;
+}
+
+.table-list-entreprises table, .table-list-utilisateurs table, .table-list-tuteurs table {    
+  text-align: left;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+  .nav {
+    margin-top : 50px;
+  }
+
+  .nav nav ul li {
+    list-style: none;
+    display: inline;
+  }
+
+  .nav nav ul li button {
+    appearance: none;
+    background-color: transparent;
+    border: 2px solid #1A1A1A;
+    border-radius: 15px;
+    box-sizing: border-box;
+    color: #3B3B3B;
+    cursor: pointer;
+    font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-size: 16px;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0;
+    min-height: 60px;
+    min-width: 0;
+    outline: none;
+    padding: 16px 24px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 200px;
+    will-change: transform;
+  }
+  
+  .nav {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
+
+  
+  .nav nav ul li button:disabled {
+    pointer-events: none;
+  }
+  
+  .nav nav ul li button:hover {
+    color: #fff;
+    background-color: #1A1A1A;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+  }
+  
+  .nav nav ul li button:active {
+    box-shadow: none;
+    transform: translateY(0);
+  }
