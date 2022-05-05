@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Back Office</title>
-		<link href="ressources/css/BackOffice.css" rel="stylesheet">
-	</head>
-
-	<script>
-	function searchInTable(inputName, tableName, searchType) {
+  <head>
+    <meta charset="UTF-8">
+    <title>Back Office</title>
+    <link href="ressources/css/BackOffice.css" rel="stylesheet">
+    <link href="ressources/img/iconeCampus.ico" rel="shortcut icon">
+  </head>
+  <script>
+	 const searchInTable = ((inputName, tableName, searchType) => {
 		let input,
 			filter,
 			table,
@@ -32,147 +32,161 @@
 				}
 			}
 		}
-	}
+	});
 	</script>
-
-	<body>
-		<div class="main-layout">
-			<div class="title">
-				<div class="title-text">
-					Les entreprises
-				</div>
-			</div>
-			<div class="layout-search">
-				<label>Rechercher :</label>
-				<div class="datalist-search">
-					<select id="searchTypeEnt" name="searchTypeEnt">
-						<option value="raisonSociale">Raison Sociale</option>
-						<option value="address">Adresse</option>
-						<option value="postalCode">Code Postal</option>
-						<option value="city">Ville</option>
-						<option value="country">Pays</option>
-					</select>
-					<input autofocus type="text" id="entreprises" onkeyup="searchInTable('entreprises', 'tableEntreprises', 'searchTypeEnt')"/>
-				</div>
-
-				<div class="button-edit-company">
-					<button class="button" id="add">Ajouter une entreprise</button>
-					<button class="button" id="delete">Supprimer une entreprise</button>
-					<button class="button" id="edit">Modifier une entreprise</button>
-				</div>
-				<div
-					class="users">
-					{# SECTION Liste de l'entreprise #}
-
-					<div class="entreprise-list">
-
-						<div class="table-list-entreprises">
-							<table id="tableEntreprises">
-								<tr>
-									<th>Raison Sociale</th>
-									<th>Adresse</th>
-									<th>Code Postal</th>
-									<th>Ville</th>
-									<th>Pays</th>
-
-									<th id="last">Option accepter</th>
-								</tr>
-								<tr>
-									{% for entreprise in entreprise %}
-										<tr>
-											<td>{{ entreprise.ent_rs }}</td>
-											<td>{{ entreprise.ent_adresse }}</td>
-											<td>{{ entreprise.ent_cp }}</td>
-											<td>{{ entreprise.ent_ville }}</td>
-											<td>{{ entreprise.ent_pays }}</td>
-										</tr>
-									{% endfor %}
-
-								</tr>
-							</table>
-						</div>
-						<hr class="line">
-						<div class="container-user">
-							<div class="title-text">
-								Liste des utilisateurs
-							</div>
-						</div>
-						<div class="layout-search">
-							<label>Rechercher :</label>
-							<div class="datalist-search">
-								<select id="searchTypeUti" name="searchTypeUti">
-									<option value="username">Nom d'utilisateur</option>
-									<option value="role">Rôle</option>
-									<option value="email">Email</option>
-									<option value="tel">Téléphone</option>
-								</select>
-								<input type="text" id="utilisateurs" onkeyup="searchInTable('utilisateurs', 'tableUtilisateurs', 'searchTypeUti')"/>
-							</div>
-							<div class="button-edit-company">
-								<button class="button" id="add">Ajouter un utilisateur</button>
-								<button class="button" id="delete">Supprimer un utilisateur</button>
-								<button class="button" id="edit">Modifier un utilisateur</button>
-							</div>
-						</div>
-						<div class="tableau-user">
-							<table id="tableUtilisateurs">
-								<tr>
-									<th>Nom d'utilisateur</th>
-									<th>Role</th>
-									<th>Email</th>
-									<th>Téléphone</th>
-								</tr>
-								<tr>
-									{% for user in user %}
-										<tr>
-											<td>{{ user.uti_username }}</td>
-										</tr>
-									{% endfor %}
-								</tr>
-							</table>
-						</div>
-					</div>
-					<div class="Tuteurs">
-						<div class="title-text">
-							Liste des tuteurs
-						</div>
-						<div class="layout-search">
-							<label>Rechercher :</label>
-							<div class="datalist-search">
-								<select id="searchTypeTut" name="searchTypeTut">
-									<option value="nom">Nom</option>
-									<option value="prenom">Prénom</option>
-									<option value="email">Email</option>
-									<option value="tel">Téléphone</option>
-								</select>
-								<input type="search" name="tuteurs" id="tuteurs" onkeyup="searchInTable('tuteurs', 'tuteursTable', 'searchTypeTut')">
-							</div>
-							<div class="button-edit-company">
-								<button class="button" id="add">Ajouter un tuteur</button>
-								<button class="button" id="delete">Supprimer un tuteur</button>
-								<button class="button" id="edit">Modifier un tuteur</button>
-							</div>
-						</div>
-						<div class="tableau-user">
-							<table id="tuteursTable">
-								<tr>
-									<th>Nom</th>
-									<th>Prénom</th>
-									<th>Email</th>
-									<th>Téléphone</th>
-								</tr>
-								<tr>
-									{% for personne in personne %}
-										<tr>
-											<td>{{ personne.per_nom }}</td>
-											<td>{{ personne.per_prenom }}</td>
-											<td>{{ personne.per_mail }}</td>
-											<td>{{ personne.per_tel }}</td>
-										</tr>
-									{% endfor %}
-								</tr>
-							</table>
-						</div>
-
-					</body>
-				</html>
+  <script type="text/javascript" src="ressources/js/ListShow.js"></script>  
+  <body>
+    <div class="main-layout">
+      <div class="logo-container">
+        <img src="ressources/img/logoCampus.png" alt="Logo La Châtaigneraie">
+      </div>        
+      <div class="nav">
+          <nav>
+            <ul>
+              <li>
+                <button name="btnEntreprise" id="btnEntreprise" onclick="ListShow()">Entreprises</button>
+              </li>
+              <li>
+                <button name ="btnUser" id="btnUser" onclick="ListShow()">Utilisateurs</button>
+            </li>
+            <li>
+              <button name = "btnTutor" id="btnTuteur" onclick="ListShow()">Tuteurs</button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="entreprise" id="entreprise">
+        <div class="title-text">
+          Les entreprises
+        </div>
+        <div class="layout-search">
+          <label>Rechercher :</label>
+          <div class="datalist-search">
+            <select id="searchTypeEnt" name="searchTypeEnt">
+              <option value="raisonSociale">Raison Sociale</option>
+              <option value="address">Adresse</option>
+              <option value="city">Ville</option>
+              <option value="postalCode">Code Postal</option>
+              <option value="country">Pays</option>
+              <option value="tutorLastName">Nom du Tuteur</option>
+              <option value="tutorFirstName">Prenom du Tuteur</option>
+            </select>
+          
+          <input autofocus type="text" id="entreprises" onkeyup="searchInTable('entreprises', 'tableEntreprises', 'searchTypeEnt')"/>
+          </div>
+        </div>
+        <div class="layout-crud">          
+          <button  class="button" id="add">Ajouter une entreprise</button>
+          <button class="button" id="delete">Supprimer une entreprise</button>
+          <button class="button" id="edit">Modifier une entreprise</button>          
+        </div>
+        <div class="entreprise-list">
+            <div class="table-list-entreprises">
+              <table id="tableEntreprises">
+                <tr>
+                  <th>Raison Sociale</th>
+                  <th>Adresse</th>
+                  <th>Code Postal</th>
+                  <th>Ville</th>
+                  <th>Pays</th>
+                  <th id="last">Option acceptée</th>
+                  
+                </tr>
+                  {% for entreprise in entreprise %}
+                  <tr>
+                <td>{{ entreprise.ent_rs }}</td>
+                <td>{{ entreprise.ent_adresse }}</td>
+                <td>{{ entreprise.ent_cp }}</td>
+                <td>{{ entreprise.ent_ville }}</td>
+                <td>{{ entreprise.ent_pays }}</td>
+                <td>{{ entreprise.Opt_Libelle }}</td>
+                </tr>
+                {% endfor %}
+              </tr>
+              </table>
+            </div>
+          </div>
+          <hr class="line">
+      </div>
+      <div class="utilisateur" id="utilisateur">             
+        <div class="title-text">
+          Les utilisateurs
+        </div>
+        <div class="layout-search">
+          <label>Rechercher :</label>
+          <div class="datalist-search">
+            <select id="searchTypeUti" name="searchTypeUti">
+              <option value="username">Nom d'utilisateur</option>
+              <option value="role"Role</option>
+            </select>         
+          <input autofocus type="text" id="utilisateurs" onkeyup="searchInTable('utilisateurs', 'tableUtilisateurs', 'searchTypeUti')"/>
+          </div>
+        </div>
+        <div class="layout-crud">
+          <button class="button" id="add">Ajouter un utilisateur</button>
+          <button class="button" id="delete">Supprimer un utilisateur</button>
+          <button class="button" id="edit">Modifier un utilisateur</button>
+        </div>          
+          <div class="utilisateur-list">
+            <div class="table-list-utilisateurs">
+              <table id="tableUtilisateurs">
+                <tr>
+                  <th>Nom d'utilisateur</th>
+                  <th>Role</th>
+                </tr>
+                <tr>
+                  {% for user in user %}
+                <tr>
+                  <td>{{ user.uti_username }}</td>
+                  <td>{{ user.uti_role }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            </div>
+          </div>
+          <hr class="line"> 
+        </div>      
+        <div class="tuteur" id="tuteur">
+          <div class="title-text">
+            Liste des tuteurs
+          </div>
+          <div class="layout-search">
+            <label>Rechercher :</label>
+            <div class="datalist-search">
+              <select id="searchTypeTut" name="searchTypeTut">
+                <option value="lastName">Nom</option>
+                <option value="firstName">Prenom</option>
+              </select>
+              <input type="text" id="tuteurs" onkeyup="searchInTable('tuteurs', 'tuteursTable', 'searchTypeTut')"/>
+            </div>
+          </div>          
+          <div class="layout-crud">
+            <button class="button" id="add">Ajouter un tuteur</button>
+            <button class="button" id="delete">Supprimer un tuteur</button>
+            <button class="button" id="edit">Modifier un tuteur</button>
+          </div>          
+          <div class="tuteur-list">
+            <div class="table-list-tuteurs">
+              <table id="tuteursTable">
+                <tr>
+                  <th>Nom</th>
+                  <th>Prenom</th>
+                  <th>Email</th>
+                  <th>Telephone</th>
+                </tr>                
+                {% for personne in personne %}
+                  <tr>
+                    <td>{{ personne.per_nom }}</td>
+                    <td>{{ personne.per_prenom }}</td>
+                    <td>{{ personne.per_mail }}</td>
+                    <td>{{ personne.per_tel }}</td>
+                  </tr>
+                {% endfor %}
+              </table>
+            </div>
+          </div>
+          <hr class="line">
+        </div>
+          
+  </body>
+</html>
