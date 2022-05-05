@@ -7,7 +7,7 @@
     <link href="ressources/img/iconeCampus.ico" rel="shortcut icon">
   </head>
   <script>
-	 const searchInTable = ((inputName, tableName, searchType) => {
+	  const searchInTable = ((inputName, tableName, searchType) => {
 		let input,
 			filter,
 			table,
@@ -34,7 +34,8 @@
 		}
 	});
 	</script>
-  <script type="text/javascript" src="ressources/js/ListShow.js"></script>  
+  <script type="text/javascript" src="ressources/js/ListShow.js"></script>
+  <script type="text/javascript" src="ressources/js/affichagePrincipale.js"></script>
   <body>
     <div class="main-layout">
       <div class="logo-container">
@@ -76,9 +77,28 @@
           </div>
         </div>
         <div class="layout-crud">          
-          <button  class="button" id="add">Ajouter une entreprise</button>
-          <button class="button" id="delete">Supprimer une entreprise</button>
-          <button class="button" id="edit">Modifier une entreprise</button>          
+          <button  class="button" id="addEntr" onclick="affichageAjout()">Ajouter une entreprise</button>
+          <button class="button" id="delEntr">Supprimer une entreprise</button>
+          <button class="button" id="editEntr" onclick="affichageAjout()">Modifier une entreprise</button>          
+        </div>
+        <div class="layout-ADD/EDITEntreprise">
+          <form id="ajoutEntr">
+              <label>Raison Sociale :</label>
+              <input type="text" name="raisonSociale" id="raisonSociale" required>
+              <label>Adresse :</label>
+              <input type="text" name="address" id="address" required>
+              <label>Ville :</label>
+              <input type="text" name="city" id="city" required>
+              <label>Code Postal :</label>
+              <input type="text" name="postalCode" id="postalCode" required>
+              <label>Pays :</label>
+              <input type="text" name="country" id="country" required>
+              <label>Nom du Tuteur :</label>
+              <input type="text" name="tutorLastName" id="tutorLastName" required>
+              <label>Prenom du Tuteur :</label>
+              <input type="text" name="tutorFirstName" id="tutorFirstName" required>
+              <input type="submit" value="Ajouter" id="submitEntr">
+          </form>
         </div>
         <div class="entreprise-list">
             <div class="table-list-entreprises">
@@ -123,10 +143,24 @@
           </div>
         </div>
         <div class="layout-crud">
-          <button class="button" id="add">Ajouter un utilisateur</button>
-          <button class="button" id="delete">Supprimer un utilisateur</button>
-          <button class="button" id="edit">Modifier un utilisateur</button>
-        </div>          
+          <button class="button" id="addUser" onclick="affichageAjout()">Ajouter un utilisateur</button>
+          <button class="button" id="delUser">Supprimer un utilisateur</button>
+          <button class="button" id="editUser" onclick="affichageAjout()">Modifier un utilisateur</button>
+        </div>
+        <div class="layout-affichage">
+            <form  id="ajoutUser">
+              <label>Nom d'utilisateur :</label>
+              <input type="text" id="username" name="username"/>
+              <label>Role :</label>
+              <select id="role" name="role">
+                <option value="admin">Admin</option>
+                <option value="professeur">professeur</option>
+              </select>
+              <label>Mot de passe :</label>
+              <input type="password" id="password" name="password"/>
+              <input type="submit" value="Ajouter" id="submitUser"/>
+            </form>
+        </div>             
           <div class="utilisateur-list">
             <div class="table-list-utilisateurs">
               <table id="tableUtilisateurs">
@@ -150,7 +184,7 @@
           <div class="title-text">
             Liste des tuteurs
           </div>
-          <div class="layout-search">
+          <div class="layout-search" >
             <label>Rechercher :</label>
             <div class="datalist-search">
               <select id="searchTypeTut" name="searchTypeTut">
@@ -161,9 +195,22 @@
             </div>
           </div>          
           <div class="layout-crud">
-            <button class="button" id="add">Ajouter un tuteur</button>
-            <button class="button" id="delete">Supprimer un tuteur</button>
-            <button class="button" id="edit">Modifier un tuteur</button>
+            <button class="button" id="addTuteur"  onclick="affichageAjout()" >Ajouter un tuteur</button>
+            <button class="button" id="delTuteur">Supprimer un tuteur</button>
+            <button class="button" id="editTuteur" onclick="affichageAjout()">Modifier un tuteur</button>
+          </div>
+          <div class="layout-affichage" >
+            <form id="ajoutTuteur">
+              <label>Nom :</label>
+              <input type="text" id="lastName" name="lastName" value="Nom" required/>
+              <label>Prenom :</label>
+              <input type="text" id="firstName" name="firstName" value="Prenom" required/>
+              <label>Email :</label>
+              <input type="text" id="email" name="email" value="Email" required/>
+              <label>Telephone :</label>
+              <input type="text" id="phone" name="phone" value="Telephone" required/>
+              <input type="submit" value="Ajouter" id="SubmitTuteur"/>
+            </form>
           </div>          
           <div class="tuteur-list">
             <div class="table-list-tuteurs">
