@@ -90,6 +90,10 @@ margin-top: 50px;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
+.table-list-entreprises table tr td#center, .table-list-tuteurs table tr td#center {  
+  text-align: center;
+}
+
   .nav {
     margin-top : 50px;
   }
@@ -102,12 +106,12 @@ margin-top: 50px;
   .nav nav ul li button {
     appearance: none;
     background-color: transparent;
-    border: 2px solid #1A1A1A;
+    border: 2px solid #343434;
     border-radius: 15px;
     box-sizing: border-box;
     color: #3B3B3B;
     cursor: pointer;
-    font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-family: Roboto, sans-serif;
     font-size: 16px;
     font-weight: 600;
     line-height: normal;
@@ -139,7 +143,7 @@ margin-top: 50px;
   
   .nav nav ul li button:hover {
     color: #fff;
-    background-color: #1A1A1A;
+    background-color: #343434;
     box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
     transform: translateY(-2px);
   }
@@ -148,3 +152,31 @@ margin-top: 50px;
     box-shadow: none;
     transform: translateY(0);
   }
+
+  .form-back-button {
+    /* center the button */
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-top: 3em;
+    margin-bottom: 3em;
+}
+
+.form-back-button button {
+    width: 150px;
+    height: 35px;
+    background-color: #7e7e7e;
+    color: #efefef;    
+    border: 0px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 18px;
+    border-radius: 3px;
+    transition: .5s all;
+    box-shadow: 0 5px 6px rgba(0, 0, 0, .094);
+}
+
+.form-back-button button:hover {
+    background-color: #9f9f9f; 
+    cursor: pointer;    
+}
