@@ -36,6 +36,7 @@
 	</script>
   <script type="text/javascript" src="ressources/js/ListShow.js"></script>
   <script type="text/javascript" src="ressources/js/affichagePrincipale.js"></script>
+  <script src="ressources/js/goBack.js"></script>  
   <body>
     <div class="main-layout">
       <div class="logo-container">
@@ -66,13 +67,13 @@
             <select id="searchTypeEnt" name="searchTypeEnt">
               <option value="raisonSociale">Raison Sociale</option>
               <option value="address">Adresse</option>
-              <option value="city">Ville</option>
               <option value="postalCode">Code Postal</option>
+              <option value="city">Ville</option>              
               <option value="country">Pays</option>
               <option value="tutorLastName">Nom du Tuteur</option>
               <option value="tutorFirstName">Prenom du Tuteur</option>
-            </select>
-          
+              <option value="acceptedOption">Option acceptée</option>
+            </select>          
           <input autofocus type="text" id="entreprises" onkeyup="searchInTable('entreprises', 'tableEntreprises', 'searchTypeEnt')"/>
           </div>
         </div>
@@ -109,14 +110,13 @@
                   <th>Code Postal</th>
                   <th>Ville</th>
                   <th>Pays</th>
-                  <th id="last">Option acceptée</th>
-                  
+                  <th id="last">Option acceptée</th>                  
                 </tr>
                   {% for entreprise in entreprise %}
                   <tr>
                 <td>{{ entreprise.ent_rs }}</td>
                 <td>{{ entreprise.ent_adresse }}</td>
-                <td>{{ entreprise.ent_cp }}</td>
+                <td id="center">{{ entreprise.ent_cp }}</td>
                 <td>{{ entreprise.ent_ville }}</td>
                 <td>{{ entreprise.ent_pays }}</td>
                 <td>{{ entreprise.Opt_Libelle }}</td>
@@ -182,7 +182,7 @@
         </div>      
         <div class="tuteur" id="tuteur">
           <div class="title-text">
-            Liste des tuteurs
+            Les tuteurs
           </div>
           <div class="layout-search" >
             <label>Rechercher :</label>
@@ -190,6 +190,8 @@
               <select id="searchTypeTut" name="searchTypeTut">
                 <option value="lastName">Nom</option>
                 <option value="firstName">Prenom</option>
+                <option value="eMail">Email</option>
+                <option value="tel">Telephone</option>
               </select>
               <input type="text" id="tuteurs" onkeyup="searchInTable('tuteurs', 'tuteursTable', 'searchTypeTut')"/>
             </div>
@@ -226,7 +228,7 @@
                     <td>{{ personne.per_nom }}</td>
                     <td>{{ personne.per_prenom }}</td>
                     <td>{{ personne.per_mail }}</td>
-                    <td>{{ personne.per_tel }}</td>
+                    <td id="center">{{ personne.per_tel }}</td>
                   </tr>
                 {% endfor %}
               </table>
@@ -234,6 +236,9 @@
           </div>
           <hr class="line">
         </div>
-          
+        <div class="form-back-button">
+				  <button value="Accueil" id="back-button" onclick="goBack()">Accueil</button>
+			  </div>
+      </div>          
   </body>
 </html>
