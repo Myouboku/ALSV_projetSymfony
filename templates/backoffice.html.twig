@@ -6,6 +6,34 @@
     <link href="ressources/css/BackOffice.css" rel="stylesheet">
     <link href="ressources/img/iconeCampus.ico" rel="shortcut icon">
   </head>
+  <script>
+	function searchInTable(inputName, tableName, searchType) {
+		let input,
+			filter,
+			table,
+			tr,
+			td,
+			i,
+			txtValue;
+		input = document.getElementById(inputName);
+		filter = input.value.toUpperCase();
+		table = document.getElementById(tableName);
+		value = document.getElementById(searchType).selectedIndex;
+		tr = table.getElementsByTagName("tr");
+
+		for (i = 0; i < tr.length; i++) {
+			td = tr[i].getElementsByTagName("td")[value];
+			if (td) {
+				txtValue = td.textContent || td.innerText;
+				if (txtValue.toUpperCase().indexOf(filter) > -1) {
+					tr[i].style.display = "";
+				} else {
+					tr[i].style.display = "none";
+				}
+			}
+		}
+	}
+	</script>
   <script type="text/javascript" src="ressources/js/ListShow.js"></script>  
   <body>
     <div class="main-layout">
@@ -34,7 +62,7 @@
         <div class="layout-search">
           <label>Rechercher :</label>
           <div class="datalist-search">
-            <select id="search-type" name="search-type">
+            <select id="searchTypeEnt" name="searchTypeEnt">
               <option value="raisonSociale">Raison Sociale</option>
               <option value="address">Adresse</option>
               <option value="city">Ville</option>
@@ -44,7 +72,7 @@
               <option value="tutorFirstName">Prenom du Tuteur</option>
             </select>
           
-          <input autofocus type="text" id="text_recherche"/>
+          <input autofocus type="text" id="entreprises" onkeyup="searchInTable('entreprises', 'tableEntreprises', 'searchTypeEnt')"/>
           </div>
         </div>
         <div class="layout-crud">          
@@ -54,7 +82,7 @@
         </div>
         <div class="entreprise-list">
             <div class="table-list-entreprises">
-              <table>
+              <table id="tableEntreprises">
                 <tr>
                   <th>Raison Sociale</th>
                   <th>Adresse</th>
@@ -87,21 +115,21 @@
         <div class="layout-search">
           <label>Rechercher :</label>
           <div class="datalist-search">
-            <select id="search-type" name="search-type">
+            <select id="searchTypeUti" name="searchTypeUti">
               <option value="username">Nom d'utilisateur</option>
               <option value="role"Role</option>
             </select>         
-          <input autofocus type="text" id="textRecherche"/>
+          <input autofocus type="text" id="utilisateurs" onkeyup="searchInTable('utilisateurs', 'tableUtilisateurs', 'searchTypeUti')"/>
           </div>
         </div>
         <div class="layout-crud">
-          <button  class="button" id="add">Ajouter un utilisateur</button>
+          <button class="button" id="add">Ajouter un utilisateur</button>
           <button class="button" id="delete">Supprimer un utilisateur</button>
           <button class="button" id="edit">Modifier un utilisateur</button>
         </div>          
           <div class="utilisateur-list">
             <div class="table-list-utilisateurs">
-              <table>
+              <table id="tableUtilisateurs">
                 <tr>
                   <th>Nom d'utilisateur</th>
                   <th>Role</th>
@@ -125,21 +153,21 @@
           <div class="layout-search">
             <label>Rechercher :</label>
             <div class="datalist-search">
-              <select id="search-type" name="search-type">
+              <select id="searchTypeTut" name="searchTypeTut">
                 <option value="lastName">Nom</option>
                 <option value="firstName">Prenom</option>
               </select>
-              <input type="text" id="text_recherche" />
+              <input type="text" id="tuteurs" onkeyup="searchInTable('tuteurs', 'tuteursTable', 'searchTypeTut')"/>
             </div>
           </div>          
           <div class="layout-crud">
-            <button  class="button" id="add">Ajouter un tuteur</button>
+            <button class="button" id="add">Ajouter un tuteur</button>
             <button class="button" id="delete">Supprimer un tuteur</button>
             <button class="button" id="edit">Modifier un tuteur</button>
           </div>          
           <div class="tuteur-list">
             <div class="table-list-tuteurs">
-              <table>
+              <table id="tuteursTable">
                 <tr>
                   <th>Nom</th>
                   <th>Prenom</th>
