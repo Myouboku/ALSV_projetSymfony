@@ -12,9 +12,7 @@ const affichageAjout = (() => {
   const ADDUser = document.getElementById('ajoutUser');
   const ADDEntr = document.getElementById('ajoutEntr');
 
-
-
-
+  
 BtnAddEntreprise.addEventListener('click', (() => {
   // On affiche les divs Entreprise
   ADDEntr.style.display = "block";
@@ -32,7 +30,7 @@ BtnAddTutor.addEventListener('click', (() => {
 
 BtneditEntreprise.addEventListener('click', (() => {
   // On affiche les divs Entreprise
-  ADDEntr.style.display = "block";
+  ADDEntr.style.display = "block";    
 }));
 
 BtneditUser.addEventListener('click', (() => {
@@ -44,5 +42,5 @@ BtneditTutor.addEventListener('click', (() => {
   // On affiche les divs Tuteur
   ADDTuteur.style.display = "block";
 }));
-
 })
+

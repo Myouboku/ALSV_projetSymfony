@@ -36,7 +36,7 @@
 	</script>
   <script type="text/javascript" src="ressources/js/ListShow.js"></script>
   <script type="text/javascript" src="ressources/js/affichagePrincipale.js"></script>
-  <script src="ressources/js/goBack.js"></script>  
+  <script src="ressources/js/goBack.js"></script>
   <body>
     <div class="main-layout">
       <div class="logo-container">
@@ -76,16 +76,45 @@
             </select>          
           <input autofocus type="text" id="entreprises" onkeyup="searchInTable('entreprises', 'tableEntreprises', 'searchTypeEnt')"/>
           </div>
-        </div>
-        <div class="layout-crud">          
-          <button  class="button" id="addEntr" onclick="affichageAjout()">Ajouter une entreprise</button>
-          <button class="button" id="delEntr">Supprimer une entreprise</button>
-          <button class="button" id="editEntr" onclick="affichageAjout()">Modifier une entreprise</button>          
-        </div>
-        <div class="layout-ADD/EDITEntreprise">
-          <form id="ajoutEntr">
+        </div>         
+        <div class="entreprise-list">
+            <div class="table-list-entreprises">
+            <form method="POST" id="entreprise" action="#">
+              <table id="tableEntreprises">
+                <tr>
+                  <th>Raison Sociale</th>
+                  <th>Adresse</th>
+                  <th>Code Postal</th>
+                  <th>Ville</th>
+                  <th>Pays</th>
+                  <th>Option acceptée</th>
+                  <th>Séléction</th>                  
+                </tr>
+                  {% for entreprise in entreprise %}
+                  <tr>
+                <td>{{ entreprise.ent_rs }}</td>
+                <td>{{ entreprise.ent_adresse }}</td>
+                <td id="center">{{ entreprise.ent_cp }}</td>
+                <td>{{ entreprise.ent_ville }}</td>
+                <td>{{ entreprise.ent_pays }}</td>
+                <td>{{ entreprise.Opt_Libelle }}</td>
+                <td><input type="radio" name="SelectedEnt" id="{{entreprise.ent_id}}" value="{{entreprise.ent_id}}" >
+                </tr>
+                {% endfor %}
+              </tr>
+              </table>              
+            </div>            
+            <div class="layout-crud">              
+              
+              <button type="submit" class="button" id="delEntr">Supprimer une entreprise</button>
+            </form>
+              <button type="submit" class="button" id="editEntr" onclick="affichageAjout()">Modifier une entreprise</button>
+              <form id="ajoutEntr" method="POST">
+              <button type="submit" class="button" id="addEntr" onclick="affichageAjout()">Ajouter une entreprise</button>             
+            </div>
+          <div class="layout-ADD/EDITEntreprise">
               <label>Raison Sociale :</label>
-              <input type="text" name="raisonSociale" id="raisonSociale" required>
+              <input type="text" name="raisonSociale" id="raisonSociale"  required>
               <label>Adresse :</label>
               <input type="text" name="address" id="address" required>
               <label>Ville :</label>
@@ -98,33 +127,14 @@
               <input type="text" name="tutorLastName" id="tutorLastName" required>
               <label>Prenom du Tuteur :</label>
               <input type="text" name="tutorFirstName" id="tutorFirstName" required>
+              <label>Option acceptée :</label>
+              <select name="acceptedOption" id="acceptedOption" required>
+                {% for entreprise in entreprise %}
+                <option value="{{entreprise.Opt_Libelle}}">{{entreprise.Opt_Libelle}}</option>
+                {% endfor %}
               <input type="submit" value="Ajouter" id="submitEntr">
           </form>
         </div>
-        <div class="entreprise-list">
-            <div class="table-list-entreprises">
-              <table id="tableEntreprises">
-                <tr>
-                  <th>Raison Sociale</th>
-                  <th>Adresse</th>
-                  <th>Code Postal</th>
-                  <th>Ville</th>
-                  <th>Pays</th>
-                  <th id="last">Option acceptée</th>                  
-                </tr>
-                  {% for entreprise in entreprise %}
-                  <tr>
-                <td>{{ entreprise.ent_rs }}</td>
-                <td>{{ entreprise.ent_adresse }}</td>
-                <td id="center">{{ entreprise.ent_cp }}</td>
-                <td>{{ entreprise.ent_ville }}</td>
-                <td>{{ entreprise.ent_pays }}</td>
-                <td>{{ entreprise.Opt_Libelle }}</td>
-                </tr>
-                {% endfor %}
-              </tr>
-              </table>
-            </div>
           </div>
           <hr class="line">
       </div>
@@ -144,7 +154,8 @@
         </div>
         <div class="layout-crud">
           <button class="button" id="addUser" onclick="affichageAjout()">Ajouter un utilisateur</button>
-          <button class="button" id="delUser">Supprimer un utilisateur</button>
+          <form action="#" method="POST">
+          <button class="button" id="delUser" type="Submit">Supprimer un utilisateur</button>
           <button class="button" id="editUser" onclick="affichageAjout()">Modifier un utilisateur</button>
         </div>
         <div class="layout-affichage">
@@ -163,19 +174,22 @@
         </div>             
           <div class="utilisateur-list">
             <div class="table-list-utilisateurs">
-              <table id="tableUtilisateurs">
-                <tr>
-                  <th>Nom d'utilisateur</th>
-                  <th>Role</th>
-                </tr>
-                <tr>
+                <table id="tableUtilisateurs">
+                  <tr>
+                    <th>Nom d'utilisateur</th>
+                    <th>Role</th>
+                    <th id="last">Séléction</th>
+                  </tr>
+                  <tr>
                   {% for user in user %}
-                <tr>
-                  <td>{{ user.uti_username }}</td>
-                  <td>{{ user.uti_role }}</td>
-                </tr>
-                {% endfor %}
-            </table>
+                  <tr>
+                    <td>{{ user.uti_username }}</td>
+                    <td>{{ user.uti_role }}</td>
+                    <td><input type="radio" name="SelectedUser" value="{{ user.uti_id }}"/></td>
+                  </tr>
+                  {% endfor %}
+              </table>
+            </form>
             </div>
           </div>
           <hr class="line"> 
@@ -191,11 +205,34 @@
                 <option value="lastName">Nom</option>
                 <option value="firstName">Prenom</option>
                 <option value="eMail">Email</option>
-                <option value="tel">Telephone</option>
+                <option value="tel">Telephone</option
               </select>
               <input type="text" id="tuteurs" onkeyup="searchInTable('tuteurs', 'tuteursTable', 'searchTypeTut')"/>
             </div>
-          </div>          
+          </div>                  
+          <div class="tuteur-list">
+            <div class="table-list-tuteurs">
+              <table id="tuteursTable">
+                <tr>
+                  <th>Nom</th>
+                  <th>Prenom</th>
+                  <th>Email</th>
+                  <th>Telephone</th>
+                  <th id="last">Séléction</th>
+                </tr>                
+                {% for personne in personne %}
+                  <tr>
+                    <td>{{ personne.per_nom }}</td>
+                    <td>{{ personne.per_prenom }}</td>
+                    <td>{{ personne.per_mail }}</td>
+                    <td id="center">{{ personne.per_tel }}</td>
+                    <td><input type="radio" name="SelectedPer" value={{personne.per_id}}</td>
+                  </tr>
+                {% endfor %}
+              </table>
+            </div>
+          </div>
+          <hr class="line">
           <div class="layout-crud">
             <button class="button" id="addTuteur"  onclick="affichageAjout()" >Ajouter un tuteur</button>
             <button class="button" id="delTuteur">Supprimer un tuteur</button>
@@ -213,28 +250,7 @@
               <input type="text" id="phone" name="phone" value="Telephone" required/>
               <input type="submit" value="Ajouter" id="SubmitTuteur"/>
             </form>
-          </div>          
-          <div class="tuteur-list">
-            <div class="table-list-tuteurs">
-              <table id="tuteursTable">
-                <tr>
-                  <th>Nom</th>
-                  <th>Prenom</th>
-                  <th>Email</th>
-                  <th>Telephone</th>
-                </tr>                
-                {% for personne in personne %}
-                  <tr>
-                    <td>{{ personne.per_nom }}</td>
-                    <td>{{ personne.per_prenom }}</td>
-                    <td>{{ personne.per_mail }}</td>
-                    <td id="center">{{ personne.per_tel }}</td>
-                  </tr>
-                {% endfor %}
-              </table>
-            </div>
-          </div>
-          <hr class="line">
+          </div>  
         </div>
         <div class="form-back-button">
 				  <button value="Accueil" id="back-button" onclick="goBack()">Accueil</button>
