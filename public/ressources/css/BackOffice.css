@@ -184,3 +184,8 @@ form.ajoutTuteur, form.ajoutEntr, form.ajoutUtilisateur {
     background-color: #9f9f9f; 
     cursor: pointer;    
 }
+
+.layout-crud {
+  justify-content: center;
+  align-content: center;
+}
