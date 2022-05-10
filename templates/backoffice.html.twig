@@ -6,34 +6,7 @@
     <link href="ressources/css/BackOffice.css" rel="stylesheet">
     <link href="ressources/img/iconeCampus.ico" rel="shortcut icon">
   </head>
-  <script>
-	  const searchInTable = ((inputName, tableName, searchType) => {
-		let input,
-			filter,
-			table,
-			tr,
-			td,
-			i,
-			txtValue;
-		input = document.getElementById(inputName);
-		filter = input.value.toUpperCase();
-		table = document.getElementById(tableName);
-		value = document.getElementById(searchType).selectedIndex;
-		tr = table.getElementsByTagName("tr");
-
-		for (i = 0; i < tr.length; i++) {
-			td = tr[i].getElementsByTagName("td")[value];
-			if (td) {
-				txtValue = td.textContent || td.innerText;
-				if (txtValue.toUpperCase().indexOf(filter) > -1) {
-					tr[i].style.display = "";
-				} else {
-					tr[i].style.display = "none";
-				}
-			}
-		}
-	});
-	</script>
+  <script src="ressources/js/searchInTable.js"></script>
   <script type="text/javascript" src="ressources/js/ListShow.js"></script>
   <script type="text/javascript" src="ressources/js/affichagePrincipale.js"></script>
   <script src="ressources/js/goBack.js"></script>
@@ -110,7 +83,8 @@
             </form>
               <button type="submit" class="button" id="editEntr" onclick="affichageAjout()">Modifier une entreprise</button>
               <form id="ajoutEntr" method="POST">
-              <button type="submit" class="button" id="addEntr" onclick="affichageAjout()">Ajouter une entreprise</button>             
+              <button type="submit" class="button" id="addEntr" {% redirect "" %}
+              >Ajouter une entreprise</button>             
             </div>
           <div class="layout-ADD/EDITEntreprise">
               <label>Raison Sociale :</label>
@@ -147,7 +121,7 @@
           <div class="datalist-search">
             <select id="searchTypeUti" name="searchTypeUti">
               <option value="username">Nom d'utilisateur</option>
-              <option value="role"Role</option>
+              <option value="role">Role</option>
             </select>         
           <input autofocus type="text" id="utilisateurs" onkeyup="searchInTable('utilisateurs', 'tableUtilisateurs', 'searchTypeUti')"/>
           </div>
@@ -205,7 +179,7 @@
                 <option value="lastName">Nom</option>
                 <option value="firstName">Prenom</option>
                 <option value="eMail">Email</option>
-                <option value="tel">Telephone</option
+                <option value="tel">Telephone</option>
               </select>
               <input type="text" id="tuteurs" onkeyup="searchInTable('tuteurs', 'tuteursTable', 'searchTypeTut')"/>
             </div>
@@ -253,8 +227,10 @@
           </div>  
         </div>
         <div class="form-back-button">
-            <button value="Accueil" id="back-button" onclick="goBack()">Accueil</button> 
-        </div>
+          <form method="post">
+            <button value="Deconnexion" id="back-button" name="deconnectButton" type="submit">Deconnexion</button>
+          </form>
+		</div>
       </div>          
   </body>
 </html>
