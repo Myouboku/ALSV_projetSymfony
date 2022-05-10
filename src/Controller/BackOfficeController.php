@@ -28,13 +28,14 @@ class BackOfficeController extends AbstractController
       //$resultEntreprise = $ListEntreprise->execute();
       $resultProfil = $ListeProfil->execute();
       $resultUser = $ListeUser->execute();
-      if(isset($_POST['SelectedEnt'])) { 
+
+      if(isset($_POST['SelectedEnt'])) {
         $Id = isset($_POST['SelectedEnt']) ? $_POST['SelectedEnt'] : 0;
-        $DeleteEnt = $doctrine->getConnection()->prepare('CALL PS_D_Utilisateur(:Id) ');
-        $DeleteEnt -> bindValue('Id', $Id); 
+        $DeleteEnt = $doctrine->getConnection()->prepare('CALL PS_D_Utilisateur(:Id)');
+        $DeleteEnt -> bindValue('Id', $Id);
         // suppression de l'utilisateur en fonction de l'id
         $DeleteEnt->execute();
-      }      
+      }
       
       /*if(isset($_POST['RaisonSociale'])) { 
         $Id = isset($_POST['SelectedUser']) ? $_POST['SelectedUser'] : 0;
@@ -44,24 +45,14 @@ class BackOfficeController extends AbstractController
         $DeleteUser->execute();
       } */
   
-      if($_POST) {
-        if($_POST['deconnectButton']){
+      if(isset($_POST['deconnectButton'])){
         $this->get('session')->set('connected', false);
         return $this->redirectToRoute('accueil');
-        }
       }
 
       return $this->render('backoffice.html.twig',[ 'entreprise' => $result->fetchAll(), 'user' => $resultUser->fetchAll(), 'personne' => $resultProfil->fetchAll()] );
       
       require_once('AccueilController.php');
-      if ( $datas != null) {
-        if ($datas[0]['UTI_ROLE'] === "A") {
-          return $this->redirectToRoute('Creation');
-        }
-        else {
-          return $this->redirectToRoute('Entreprise');
-        }
-      }
     }
   }
 ?>
