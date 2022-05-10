@@ -17,24 +17,38 @@ class ModificationController extends AbstractController
 
     function modificationAction(Request $request, ManagerRegistry $doctrine)
     {
+        
         try {
-            $Id = $request->request->get('Id');
-            $stmt = $doctrine->getConnection()->prepare('CALL PS_Recuperation_EntrepriseId(:IdEntreprise);');
-            $stmt->bindValue(':IdEntreprise', $Id);
-            $result = $stmt->execute();   
+            //récupération des données de l'entreprise
+            $Id = intval($_GET['SelectedEnt']);                                
+            $stmt = $doctrine->getConnection()->prepare('CALL PS_Recuperation_EntrepriseId(:IdEntreprise)'); //PS_Recuperation_EntrepriseId
+            $stmt->bindValue(':IdEntreprise', $Id); //bindValue pour une valeur
+            $result = $stmt->execute(); //execution de la requete
+            $stmtOpt = $doctrine->getConnection()->prepare('SELECT id, opt_libelle from entreprise_option');
+            $resultOpt = $stmtOpt->execute();
+            
+            return $this->render('modifEntreprise.html.twig',[ 'entreprise' => $result->fetchAll(), 'opt' => $resultOpt->fetchAll()] ); //affichage de la page de modification
+
         }
-        catch (Exception) {
+        catch (Exception $e) {
             try {
+                //récupération des données de l'utilisateur
                 $Id = $request->request->get('Id');
-                $stmt = $doctrine->getConnection()->prepare('CALL PS_Recuperation_UtilisateurId(:IdUtilisateur);');
-                $stmt->bindValue(':IdUtilisateur', $Id);
-                $result = $stmt->execute();
+                $stmt = $doctrine->getConnection()->prepare('CALL PS_Recuperation_UtilisateurId(:IdUtilisateur)'); //PS_Recuperation_UtilisateurId
+                $stmt->bindValue(':IdUtilisateur', $Id); //bindValue pour une valeur
+                $result = $stmt->execute();  //execution de la requete
+                return $this->render('modifUtilisateur.html.twig',[ 'utilisateur' => $result->fetchAll()] ); //affichage de la page de modification
+
             }
-            catch (Exception) {
+            catch (Exception $e) {
+                
+                //récupération des données du tuteur
                 $Id = $request->request->get('Id');
-                $stmt = $doctrine->getConnection()->prepare('CALL PS_Recuperation_TuteurId(:IdTuteur);');
-                $stmt->bindValue(':IdTuteur', $Id);
-                $result = $stmt->execute();  
+                $stmt = $doctrine->getConnection()->prepare('CALL PS_Recuperation_TuteurId(:IdTuteur)'); //PS_Recuperation_TuteurId
+                $stmt->bindValue(':IdTuteur', $Id); //bindValue pour une valeur
+                $result = $stmt->execute();   //execution de la requete
+                return $this->render('modifTuteur.html.twig',[ 'tuteur' => $result->fetchAll()] ); //affichage de la page de modification
+
             }
         }   
     }

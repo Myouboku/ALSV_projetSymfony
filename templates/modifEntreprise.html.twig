@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Back Office</title>
+    <link href="ressources/css/Modification.css" rel="stylesheet">
+    <link href="ressources/img/iconeCampus.ico" rel="shortcut icon">
+  </head>
+  <script src="ressources/js/goBack.js"></script>
+  <body>
+    <div class="main-layout">
+      <div class="logo-container">
+        <img src="ressources/img/logoCampus.png" alt="Logo La Châtaigneraie">
+      </div>
+        <div class="form-container">
+            <form action="{{path('backoffice')}}" method="post">
+                <div class="form-group">
+                    {% for entreprise in entreprise %}
+                        <label for="rs">Raison sociale :</label>
+                        <input type="text" id="rs" name="rs" value="{{entreprise.ent_rs}}">
+                        <label for="adresse">Adresse :</label>
+                        <input type="text" id="adresse" name="adresse" value="{{entreprise.ent_adresse}}">
+                        <label for="cp">Code Postal :</label>
+                        <input type="text" id="cp" name="cp" value="{{entreprise.ent_cp}}">
+                        <label for="ville">Ville :</label>
+                        <input type="text" id="ville" name="ville" value="{{entreprise.ent_ville}}">
+                        <label for="pays">Pays :</label>
+                        <input type="text" id="pays" name="pays" value="{{entreprise.ent_pays}}">
+                        <label for="option">Option accepetée :</label>
+                        <select>
+                            <!--{% for opt in opt %}
+                                <option value="1">aa</option>
+                            {% endfor %} -->
+                        </select>                        
+                    {% endfor %}
+                </div>
+                <button type="submit">Valider</button>
+            </form>
+            <button name="deleteEntr">Supprimer l'entreprise</button>
+        </div>
+    </div>
+    <!-- formulaire de mofification de l'entreprise -->   
+    <div class="form-back-button">
+	    <button value="Accueil" id="back-button" onclick="goBack()">Retour</button>
+	</div>    
+  </body>
+</html>
