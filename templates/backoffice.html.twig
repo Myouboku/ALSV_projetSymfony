@@ -6,34 +6,7 @@
     <link href="ressources/css/BackOffice.css" rel="stylesheet">
     <link href="ressources/img/iconeCampus.ico" rel="shortcut icon">
   </head>
-  <script>
-	  const searchInTable = ((inputName, tableName, searchType) => {
-		let input,
-			filter,
-			table,
-			tr,
-			td,
-			i,
-			txtValue;
-		input = document.getElementById(inputName);
-		filter = input.value.toUpperCase();
-		table = document.getElementById(tableName);
-		value = document.getElementById(searchType).selectedIndex;
-		tr = table.getElementsByTagName("tr");
-
-		for (i = 0; i < tr.length; i++) {
-			td = tr[i].getElementsByTagName("td")[value];
-			if (td) {
-				txtValue = td.textContent || td.innerText;
-				if (txtValue.toUpperCase().indexOf(filter) > -1) {
-					tr[i].style.display = "";
-				} else {
-					tr[i].style.display = "none";
-				}
-			}
-		}
-	});
-	</script>
+  <script src="ressources/js/searchInTable.js"></script>
   <script type="text/javascript" src="ressources/js/ListShow.js"></script>
   <script type="text/javascript" src="ressources/js/affichagePrincipale.js"></script>
   <script src="ressources/js/goBack.js"></script>
@@ -253,7 +226,9 @@
           </div>  
         </div>
         <div class="form-back-button">
-				  <button value="Accueil" id="back-button" onclick="goBack()">Accueil</button>
+          <form method="post">
+            <button value="Deconnexion" id="back-button" name="deconnectButton" type="submit">Deconnexion</button>
+          </form>
 			  </div>
       </div>          
   </body>

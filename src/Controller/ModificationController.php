@@ -23,14 +23,14 @@ class ModificationController extends AbstractController
             $stmt->bindValue(':IdEntreprise', $Id);
             $result = $stmt->execute();   
         }
-        catch (Exception) {
+        catch (Exception $e) {
             try {
                 $Id = $request->request->get('Id');
                 $stmt = $doctrine->getConnection()->prepare('CALL PS_Recuperation_UtilisateurId(:IdUtilisateur);');
                 $stmt->bindValue(':IdUtilisateur', $Id);
                 $result = $stmt->execute();
             }
-            catch (Exception) {
+            catch (Exception $e) {
                 $Id = $request->request->get('Id');
                 $stmt = $doctrine->getConnection()->prepare('CALL PS_Recuperation_TuteurId(:IdTuteur);');
                 $stmt->bindValue(':IdTuteur', $Id);
