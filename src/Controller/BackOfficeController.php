@@ -29,16 +29,14 @@ class BackOfficeController extends AbstractController {
         $DeleteEnt -> bindValue('Id', $Id); 
         // suppression de l'utilisateur en fonction de l'id
         $DeleteEnt->execute();
+      }       
+      
+      if (isset($_POST['deleteEntr'])) {
+        $stmt = $doctrine->getConnection()->prepare('CALL PS_D_Entreprise(:IdEntreprise);');
+        $stmt->bindValue('IdEntreprise', intval($_POST['deleteEntr']));
+        $stmt->execute();
+        $stmt = null;
       }      
-      
-      
-      /*if(isset($_POST['RaisonSociale'])) { 
-        $Id = isset($_POST['SelectedUser']) ? $_POST['SelectedUser'] : 0;
-        $DeleteUser = $doctrine->getConnection()->prepare('CALL PS_D_Utilisateur(:Id) ');
-        $DeleteUser -> bindValue('Id', $Id); 
-        // suppression de l'utilisateur en fonction de l'id
-        $DeleteUser->execute();
-      } */
 
       return $this->render('backoffice.html.twig',[ 'entreprise' => $result->fetchAll(), 'user' => $resultUser->fetchAll(), 'personne' => $resultProfil->fetchAll()] );
       

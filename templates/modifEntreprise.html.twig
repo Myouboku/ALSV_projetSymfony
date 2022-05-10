@@ -13,7 +13,7 @@
                 <img src="ressources/img/logoCampus.png" alt="Logo La Châtaigneraie">
             </div>
             <div class="form-container">
-                <form action="{{ path('backoffice') }}" method="post">
+                <form action="{{ path('backoffice') }}" method="POST">
                     <div class="form-group">
                         {% for entreprise in entreprise %}
                             <label for="rs">Raison sociale :</label>
@@ -43,8 +43,14 @@
                         {% endfor %}
                     </div>
                     <button type="submit">Valider</button>
-                </form>                            
-                <button name="deleteEntr">Supprimer l'entreprise</button>
+                </form>
+                  <div class="delete-entr-button"> 
+                  <form action="{{ path('backoffice')}}" method="POST">
+                  {% for entreprise in entreprise %}                    
+                <button type="submit" name="deleteEntr" value="{{ entreprise.idEntr }}" id="deleteEntr">Supprimer l'entreprise</button>
+                {% endfor %}
+                </form>
+                </div>
             </div>
         </div>
         <!-- formulaire de mofification de l'entreprise -->

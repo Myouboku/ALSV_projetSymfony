@@ -52,7 +52,7 @@
         </div>         
         <div class="entreprise-list">
             <div class="table-list-entreprises">
-            <form method="POST" id="entreprise" action="#">
+            <form method="GET" id="entreprise" action="{{path('modification')}}">
               <table id="tableEntreprises">
                 <tr>
                   <th>Raison Sociale</th>
@@ -71,20 +71,17 @@
                 <td>{{ entreprise.ent_ville }}</td>
                 <td>{{ entreprise.ent_pays }}</td>
                 <td>{{ entreprise.Opt_Libelle }}</td>
-                <td><input type="radio" name="SelectedEnt" id="{{entreprise.ent_id}}" value="{{entreprise.ent_id}}" >
+                <td><input type="radio" name="SelectedEnt" id="{{entreprise.ent_id}}" value="{{entreprise.ent_id}}" required >
                 </tr>
                 {% endfor %}
               </tr>
               </table>              
             </div>            
-            <div class="layout-crud">              
-              
-              <button type="submit" class="button" id="delEntr">Supprimer une entreprise</button>
-            </form>
-              <button type="submit" class="button" id="editEntr" onclick="affichageAjout()">Modifier une entreprise</button>
+            <div class="layout-crud">            
+              <button type="submit" class="button">Modifier une entreprise</button>
+              </form>
               <form id="ajoutEntr" method="POST">
-              <button type="submit" class="button" id="addEntr" {% redirect "" %}
-              >Ajouter une entreprise</button>             
+              <button type="submit" class="button" id="addEntr" onclick="affichageAjout()"> Ajouter une entreprise</button>             
             </div>
           <div class="layout-ADD/EDITEntreprise">
               <label>Raison Sociale :</label>
