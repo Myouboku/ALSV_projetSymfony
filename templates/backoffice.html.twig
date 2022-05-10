@@ -87,21 +87,23 @@
               <label>Raison Sociale :</label>
               <input type="text" name="raisonSociale" id="raisonSociale"  required>
               <label>Adresse :</label>
-              <input type="text" name="address" id="address" required>
+              <input type="text" name="adresse" id="adresse" required>
               <label>Ville :</label>
-              <input type="text" name="city" id="city" required>
+              <input type="text" name="ville" id="ville" required>
               <label>Code Postal :</label>
-              <input type="text" name="postalCode" id="postalCode" required>
+              <input type="text" name="codePostal" id="codePostal" required>
               <label>Pays :</label>
-              <input type="text" name="country" id="country" required>
-              <label>Nom du Tuteur :</label>
-              <input type="text" name="tutorLastName" id="tutorLastName" required>
-              <label>Prenom du Tuteur :</label>
-              <input type="text" name="tutorFirstName" id="tutorFirstName" required>
+              <input type="text" name="pays" id="pays" required>
+              <label>Tuteur :</label>
+              <select name="tutor" id="tutor" required>
+                {% for personne in personne %}
+                <option value="{{personne.per_id}}">{{personne.per_nom}} {{personne.per_prenom}}</option>
+                {% endfor %}
+              </select>
               <label>Option acceptée :</label>
               <select name="acceptedOption" id="acceptedOption" required>
-                {% for entreprise in entreprise %}
-                <option value="{{entreprise.Opt_Libelle}}">{{entreprise.Opt_Libelle}}</option>
+                {% for option in option  %}
+                <option value="{{option.id}}">{{option.opt_libelle}}</option>
                 {% endfor %}
               <input type="submit" value="Ajouter" id="submitEntr">
           </form>

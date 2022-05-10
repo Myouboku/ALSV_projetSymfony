@@ -16,28 +16,28 @@
                 <form action="{{ path('backoffice') }}" method="POST">
                     <div class="form-group">
                         {% for entreprise in entreprise %}
-                            <label for="rs">Raison sociale :</label>
-                            <input type="text" id="rs" name="rs" value="{{ entreprise.ent_rs }}">
-                            <label for="adresse">Adresse :</label>
-                            <input type="text" id="adresse" name="adresse" value="{{ entreprise.ent_adresse }}">
-                            <label for="cp">Code Postal :</label>
-                            <input type="text" id="cp" name="cp" value="{{ entreprise.ent_cp }}">
-                            <label for="ville">Ville :</label>
-                            <input type="text" id="ville" name="ville" value="{{ entreprise.ent_ville }}">
-                            <label for="pays">Pays :</label>
-                            <input type="text" id="pays" name="pays" value="{{ entreprise.ent_pays }}">
-                            <label for="option">Option accepetée :</label>
-                            <select>
+                            <label for="modif_rs">Raison sociale :</label>
+                            <input type="text" id="modif_rs" name="rs" value="{{ entreprise.ent_rs }}">
+                            <label for="modif_adresse">Adresse :</label>
+                            <input type="text" id="modif_adresse" name="adresse" value="{{ entreprise.ent_adresse }}">
+                            <label for="modif_cp">Code Postal :</label>
+                            <input type="text" id="modif_cp" name="cp" value="{{ entreprise.ent_cp }}">
+                            <label for="modif_ville">Ville :</label>
+                            <input type="text" id="modif_ville" name="ville" value="{{ entreprise.ent_ville }}">
+                            <label for="modif_pays">Pays :</label>
+                            <input type="text" id="modif_pays" name="pays" value="{{ entreprise.ent_pays }}">
+                            <label for="modif_option">Option acceptée :</label>
+                            <select id="modif_option" name="option">
                                 <option selected value="{{ entreprise.opt_id }}">{{ entreprise.opt_libelle }}</option>
                                 {% for opt in opt %}
                                     <option value="{{ opt.id }}">{{ opt.opt_libelle }}</option>
                                 {% endfor %}
                             </select>
-                            <label for="option">Tuteur :</label>
-                            <select>
-                                <option selected value="{{ entreprise.per_nom }}">{{ entreprise.per_nom }} {{ entreprise.per_prenom }}</option>
+                            <label for="modif_tuteur">Tuteur :</label>
+                            <select id="modif_tuteur" name="tuteur">
+                                <option selected value="{{ entreprise.per_id }}">{{ entreprise.per_nom }} {{ entreprise.per_prenom }}</option>
                                 {% for personne in personne %}
-                                    <option value="{{ personne.per_nom }}">{{ personne.per_nom }} {{ personne.per_prenom }}</option>
+                                    <option value="{{ personne.id }}">{{ personne.per_nom }} {{ personne.per_prenom }}</option>
                                 {% endfor %}
                             </select>
                         {% endfor %}
@@ -55,7 +55,7 @@
         </div>
         <!-- formulaire de mofification de l'entreprise -->
         <div class="form-back-button">
-            <button value="Accueil" id="back-button" onclick="goBack()">Retour</button>
+            <button value="Retour" id="back-button" onclick="goBack()">Retour</button>
         </div>
     </body>
 </html>
