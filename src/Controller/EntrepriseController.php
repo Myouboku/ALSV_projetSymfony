@@ -27,11 +27,9 @@ class EntrepriseController extends AbstractController {
     $stmt = $doctrine->getConnection()->prepare('SELECT ent_rs,ent_adresse,ent_cp,ent_ville,ent_pays, IFNULL(opt_libelle, "Pas Option") as Opt_Libelle from entreprise LEFT join entreprise_option on entreprise.opt_id = entreprise_option.id;');
     $result = $stmt->execute();
 
-    if($_POST) {
-      if($_POST['deconnectButton']){
-        $this->get('session')->set('connected', false);
-        return $this->redirectToRoute('accueil');
-      }
+    if(isset($_POST['deconnectButton'])){
+      $this->get('session')->set('connected', false);
+      return $this->redirectToRoute('accueil');
     }
 
     return $this->render('entreprise.html.twig',[ 'entreprise' => $result->fetchAll()] );

@@ -29,11 +29,9 @@ class BackOfficeController extends AbstractController
     $resultProfil = $ListeProfil->execute();
     $resultUser = $ListeUser->execute();
 
-    if($_POST) {
-      if($_POST['deconnectButton']){
-        $this->get('session')->set('connected', false);
-        return $this->redirectToRoute('accueil');
-      }
+    if(isset($_POST['deconnectButton'])){
+      $this->get('session')->set('connected', false);
+      return $this->redirectToRoute('accueil');
     }
 
     return $this->render('backoffice.html.twig', ['entreprise' => $result->fetchAll(), 'user' => $resultUser->fetchAll(), 'personne' => $resultProfil->fetchAll()]);
