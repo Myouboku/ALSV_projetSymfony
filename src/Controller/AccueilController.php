@@ -29,8 +29,6 @@ class AccueilController extends AbstractController
                 return $this->redirectToRoute('backoffice');
             elseif ($session->get('role') === "P")
                 return $this->redirectToRoute('Entreprise');
-            else
-                return $this->redirectToRoute('error');
         }
 
         if ($form->isSubmitted()) {
@@ -58,8 +56,6 @@ class AccueilController extends AbstractController
                     return $this->redirectToRoute('backoffice');
                 elseif ($session->get('role') === "P")
                     return $this->redirectToRoute('Entreprise');
-                else
-                    return $this->redirectToRoute('error');
             }
         }
         return $this->render('accueil.html.twig', [
