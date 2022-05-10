@@ -33,10 +33,17 @@
                                     <option value="{{ opt.id }}">{{ opt.opt_libelle }}</option>
                                 {% endfor %}
                             </select>
+                            <label for="option">Tuteur :</label>
+                            <select>
+                                <option selected value="{{ entreprise.per_nom }}">{{ entreprise.per_nom }} {{ entreprise.per_prenom }}</option>
+                                {% for personne in personne %}
+                                    <option value="{{ personne.per_nom }}">{{ personne.per_nom }} {{ personne.per_prenom }}</option>
+                                {% endfor %}
+                            </select>
                         {% endfor %}
                     </div>
                     <button type="submit">Valider</button>
-                </form>
+                </form>                            
                 <button name="deleteEntr">Supprimer l'entreprise</button>
             </div>
         </div>

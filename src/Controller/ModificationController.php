@@ -19,28 +19,37 @@ class ModificationController extends AbstractController
     {
         if ($_GET['SelectedEnt']) {
             $Id = intval($_GET['SelectedEnt']);
-            
+
             //récupération des données de l'entreprise                                            
             $stmt = $doctrine->getConnection()->prepare('CALL PS_Recuperation_EntrepriseId(:IdEntreprise)'); //PS_Recuperation_EntrepriseId                
             $stmt->bindValue(':IdEntreprise', $Id);
-            
+
             // récupération de la liste des options
             $stmtOpt = $doctrine->getConnection()->prepare('CALL PS_Recuperation_Option(:IdEntr)'); //PS_Recuperation_Option  
             $stmtOpt->bindValue(':IdEntr', $Id);
 
+            // récupération de la liste des tuteurs
+            $stmtPer = $doctrine->getConnection()->prepare('CALL PS_Recuperation_Tuteur(:IdEntr)'); //PS_Recuperation_Option  
+            $stmtPer->bindValue(':IdEntr', $Id);
+
             // exécution et fetch de la requête de récupération des données de l'entreprise
-            $result = $stmt->execute();            
+            $result = $stmt->execute();
             $result = $result->fetchAll();
             // close mysql connection
             $stmt = null;
 
             // exécution et fetch de la requête de récupération des options 
-            $resultOpt = $stmtOpt->execute(); 
-            $resultOpt = $resultOpt->fetchAll(); 
-            $stmtOpt = null;  
+            $resultOpt = $stmtOpt->execute();
+            $resultOpt = $resultOpt->fetchAll();
+            $stmtOpt = null;
+
+            // exécution et fetch de la requête de récupération des tuteurs 
+            $resultPer = $stmtPer->execute();
+            $resultPer = $resultPer->fetchAll();
+            $stmtPer = null;
 
             // affichage
-            return $this->render('modifEntreprise.html.twig', ['entreprise' => $result, 'opt' => $resultOpt]); //affichage de la page de modification
+            return $this->render('modifEntreprise.html.twig', ['entreprise' => $result, 'personne' => $result, 'opt' => $resultOpt, 'personne' => $resultPer]); //affichage de la page de modification
         }
     }
 }
