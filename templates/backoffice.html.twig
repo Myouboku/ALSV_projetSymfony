@@ -31,10 +31,10 @@
         </nav>
       </div>
       <div class="entreprise" id="entreprise">
-        <div class="title-text">
+        <div class="title-text-center">
           Les entreprises
         </div>
-        <div class="layout-search">
+        <div class="layout-search-center">
           <label>Rechercher :</label>
           <div class="datalist-search">
             <select id="searchTypeEnt" name="searchTypeEnt">
@@ -61,6 +61,7 @@
                   <th>Ville</th>
                   <th>Pays</th>
                   <th>Option acceptée</th>
+                  <th>Nom du Tuteur</th>
                   <th>Séléction</th>                  
                 </tr>
                   {% for entreprise in entreprise %}
@@ -71,19 +72,21 @@
                 <td>{{ entreprise.ent_ville }}</td>
                 <td>{{ entreprise.ent_pays }}</td>
                 <td>{{ entreprise.Opt_Libelle }}</td>
-                <td><input type="radio" name="SelectedEnt" id="{{entreprise.ent_id}}" value="{{entreprise.ent_id}}" required >
+                <td>{{ entreprise.per_nom }}</td>
+                <td><input type="radio" name="SelectedEnt" id="{{entreprise.ent_id}}" value="{{entreprise.ent_id}}" required ></td>
                 </tr>
                 {% endfor %}
               </tr>
               </table>              
-            </div>            
+            </div>
+            <hr class="line">            
             <div class="layout-crud">            
               <button type="submit" class="button">Modifier une entreprise</button>
               </form>
-              <form id="ajoutEntr" method="POST">
-              <button type="submit" class="button" id="addEntr" onclick="affichageAjout()"> Ajouter une entreprise</button>             
+              <div class="form-add-entreprise">
+              <form id="ajoutEntr" method="POST">  
             </div>
-          <div class="layout-ADD/EDITEntreprise">
+          <div class="layout-AddEntreprise">
               <label>Raison Sociale :</label>
               <input type="text" name="raisonSociale" id="raisonSociale"  required>
               <label>Adresse :</label>
@@ -105,8 +108,9 @@
                 {% for option in option  %}
                 <option value="{{option.id}}">{{option.opt_libelle}}</option>
                 {% endfor %}
-              <input type="submit" value="Ajouter" id="submitEntr">
+							<input type="submit" name="addEntr" value="Ajouter" id="addEntr">
           </form>
+          </div>
         </div>
           </div>
           <hr class="line">
@@ -125,25 +129,7 @@
           <input autofocus type="text" id="utilisateurs" onkeyup="searchInTable('utilisateurs', 'tableUtilisateurs', 'searchTypeUti')"/>
           </div>
         </div>
-        <div class="layout-crud">
-          <button class="button" id="addUser" onclick="affichageAjout()">Ajouter un utilisateur</button>
-          <form action="#" method="POST">
-          <button class="button" id="delUser" type="Submit">Supprimer un utilisateur</button>
-          <button class="button" id="editUser" onclick="affichageAjout()">Modifier un utilisateur</button>
-        </div>
         <div class="layout-affichage">
-            <form  id="ajoutUser">
-              <label>Nom d'utilisateur :</label>
-              <input type="text" id="username" name="username"/>
-              <label>Role :</label>
-              <select id="role" name="role">
-                <option value="admin">Admin</option>
-                <option value="professeur">professeur</option>
-              </select>
-              <label>Mot de passe :</label>
-              <input type="password" id="password" name="password"/>
-              <input type="submit" value="Ajouter" id="submitUser"/>
-            </form>
         </div>             
           <div class="utilisateur-list">
             <div class="table-list-utilisateurs">
@@ -166,6 +152,23 @@
             </div>
           </div>
           <hr class="line"> 
+          <div class="layout-crud">
+          <form  id="ajoutUser">
+              <label>Nom d'utilisateur :</label>
+              <input type="text" id="username" name="username"/>
+              <label>Role :</label>
+              <select id="role" name="role">
+                <option value="admin">Admin</option>
+                <option value="professeur">Professeur</option>
+              </select>
+              <label>Mot de passe :</label>
+              <input type="password" id="password" name="password"/>
+              <input type="submit" value="Ajouter" id="submitUser"/>
+            </form>
+          <button class="button" id="editUser">Modifier un utilisateur</button>
+          <form action="#" method="POST">
+        </div>
+
         </div>      
         <div class="tuteur" id="tuteur">
           <div class="title-text">
@@ -207,20 +210,19 @@
           </div>
           <hr class="line">
           <div class="layout-crud">
-            <button class="button" id="addTuteur"  onclick="affichageAjout()" >Ajouter un tuteur</button>
-            <button class="button" id="delTuteur">Supprimer un tuteur</button>
+            <!--<button class="button" id="addTuteur"  onclick="affichageAjout()" >Ajouter un tuteur</button>-->
             <button class="button" id="editTuteur" onclick="affichageAjout()">Modifier un tuteur</button>
           </div>
           <div class="layout-affichage" >
             <form id="ajoutTuteur">
               <label>Nom :</label>
-              <input type="text" id="lastName" name="lastName" value="Nom" required/>
+              <input type="text" id="lastName" name="lastName" required/>
               <label>Prenom :</label>
-              <input type="text" id="firstName" name="firstName" value="Prenom" required/>
+              <input type="text" id="firstName" name="firstName" required/>
               <label>Email :</label>
-              <input type="text" id="email" name="email" value="Email" required/>
+              <input type="text" id="email" name="email" required/>
               <label>Telephone :</label>
-              <input type="text" id="phone" name="phone" value="Telephone" required/>
+              <input type="text" id="phone" name="phone" required/>
               <input type="submit" value="Ajouter" id="SubmitTuteur"/>
             </form>
           </div>  

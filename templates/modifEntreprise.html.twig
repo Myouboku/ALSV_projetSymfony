@@ -1,61 +1,65 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Back Office</title>
-        <link href="ressources/css/Modification.css" rel="stylesheet">
-        <link href="ressources/img/iconeCampus.ico" rel="shortcut icon">
-    </head>
-    <script src="ressources/js/goBack.js"></script>
-    <body>
-        <div class="main-layout">
-            <div class="logo-container">
-                <img src="ressources/img/logoCampus.png" alt="Logo La Châtaigneraie">
-            </div>
-            <div class="form-container">
-                <form action="{{ path('backoffice') }}" method="POST">
-                    <div class="form-group">
-                        {% for entreprise in entreprise %}
-                            <label for="modif_rs">Raison sociale :</label>
-                            <input type="text" id="modif_rs" name="rs" value="{{ entreprise.ent_rs }}">
-                            <label for="modif_adresse">Adresse :</label>
-                            <input type="text" id="modif_adresse" name="adresse" value="{{ entreprise.ent_adresse }}">
-                            <label for="modif_cp">Code Postal :</label>
-                            <input type="text" id="modif_cp" name="cp" value="{{ entreprise.ent_cp }}">
-                            <label for="modif_ville">Ville :</label>
-                            <input type="text" id="modif_ville" name="ville" value="{{ entreprise.ent_ville }}">
-                            <label for="modif_pays">Pays :</label>
-                            <input type="text" id="modif_pays" name="pays" value="{{ entreprise.ent_pays }}">
-                            <label for="modif_option">Option acceptée :</label>
-                            <select id="modif_option" name="option">
-                                <option selected value="{{ entreprise.opt_id }}">{{ entreprise.opt_libelle }}</option>
-                                {% for opt in opt %}
-                                    <option value="{{ opt.id }}">{{ opt.opt_libelle }}</option>
-                                {% endfor %}
-                            </select>
-                            <label for="modif_tuteur">Tuteur :</label>
-                            <select id="modif_tuteur" name="tuteur">
-                                <option selected value="{{ entreprise.per_id }}">{{ entreprise.per_nom }} {{ entreprise.per_prenom }}</option>
-                                {% for personne in personne %}
-                                    <option value="{{ personne.id }}">{{ personne.per_nom }} {{ personne.per_prenom }}</option>
-                                {% endfor %}
-                            </select>
-                        {% endfor %}
-                    </div>
-                    <button type="submit">Valider</button>
-                </form>
-                  <div class="delete-entr-button"> 
-                  <form action="{{ path('backoffice')}}" method="POST">
-                  {% for entreprise in entreprise %}                    
-                <button type="submit" name="deleteEntr" value="{{ entreprise.idEntr }}" id="deleteEntr">Supprimer l'entreprise</button>
-                {% endfor %}
-                </form>
-                </div>
-            </div>
-        </div>
-        <!-- formulaire de mofification de l'entreprise -->
-        <div class="form-back-button">
-            <button value="Retour" id="back-button" onclick="goBack()">Retour</button>
-        </div>
-    </body>
+	<head>
+		<meta charset="UTF-8">
+		<title>Back Office</title>
+		<link href="ressources/css/Modification.css" rel="stylesheet">
+		<link href="ressources/img/iconeCampus.ico" rel="shortcut icon">
+	</head>
+	<script src="ressources/js/goBack.js"></script>
+	<body>
+		<div class="main-layout">
+			<div class="logo-container">
+				<img src="ressources/img/logoCampus.png" alt="Logo La Châtaigneraie">
+			</div>
+			<div class="form-container">
+				<form action="{{ path('backoffice') }}" method="POST">
+					<div class="form-group">
+						{% for entreprise in entreprise %}
+							<label for="idEntr">Id :</label>
+							<input readonly type="text" id="idEntr" name="idEntr" value="{{ entreprise.idEntr }}">
+							<label for="modif_rs">Raison sociale :</label>
+							<input type="text" id="rs" name="modif_rs" value="{{ entreprise.ent_rs }}">
+							<label for="modif_adresse">Adresse :</label>
+							<input type="text" id="adresse" name="modif_adresse" value="{{ entreprise.ent_adresse }}">
+							<label for="modif_cp">Code Postal :</label>
+							<input type="text" id="cp" name="modif_cp" value="{{ entreprise.ent_cp }}">
+							<label for="modif_ville">Ville :</label>
+							<input type="text" id="ville" name="modif_ville" value="{{ entreprise.ent_ville }}">
+							<label for="modif_pays">Pays :</label>
+							<input type="text" id="pays" name="modif_pays" value="{{ entreprise.ent_pays }}">
+							<label for="modif_option">Option acceptée :</label>
+							<select id="option" name="modif_option">
+								<option selected value="{{ entreprise.opt_id }}">{{ entreprise.opt_libelle }}</option>
+								{% for opt in opt %}
+									<option value="{{ opt.id }}">{{ opt.opt_libelle }}</option>
+								{% endfor %}
+							</select>
+							<label for="modif_tuteur">Tuteur :</label>
+							<select id="tuteur" name="modif_tuteur">
+								<option selected value="{{ entreprise.per_id }}">{{ entreprise.per_nom }}
+									{{ entreprise.per_prenom }}</option>
+								{% for personne in personne %}
+									<option value="{{ personne.id }}">{{ personne.per_nom }}
+										{{ personne.per_prenom }}</option>
+								{% endfor %}
+							</select>
+						{% endfor %}
+					</div>
+					<button type="submit">Valider</button>
+				</form>
+				<div class="delete-entr-button">
+					<form action="{{ path('backoffice')}}" method="POST">
+						{% for entreprise in entreprise %}
+							<button type="submit" name="deleteEntr" value="{{ entreprise.idEntr }}" id="deleteEntr">Supprimer l'entreprise</button>
+						{% endfor %}
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- formulaire de mofification de l'entreprise -->
+		<div class="form-back-button">
+			<button value="Retour" id="back-button" onclick="goBack()">Retour</button>
+		</div>
+	</body>
 </html>
