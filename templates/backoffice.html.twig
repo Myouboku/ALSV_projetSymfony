@@ -1,237 +1,256 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Back Office</title>
-    <link href="ressources/css/BackOffice.css" rel="stylesheet">
-    <link href="ressources/img/iconeCampus.ico" rel="shortcut icon">
-  </head>
-  <script src="ressources/js/searchInTable.js"></script>
-  <script type="text/javascript" src="ressources/js/ListShow.js"></script>
-  <script type="text/javascript" src="ressources/js/affichagePrincipale.js"></script>
-  <script src="ressources/js/goBack.js"></script>
-  <body>
-    <div class="main-layout">
-      <div class="logo-container">
-        <img src="ressources/img/logoCampus.png" alt="Logo La Châtaigneraie">
-      </div>        
-      <div class="nav">
-          <nav>
-            <ul>
-              <li>
-                <button name="btnEntreprise" id="btnEntreprise" onclick="ListShow()">Entreprises</button>
-              </li>
-              <li>
-                <button name ="btnUser" id="btnUser" onclick="ListShow()">Utilisateurs</button>
-            </li>
-            <li>
-              <button name = "btnTutor" id="btnTuteur" onclick="ListShow()">Tuteurs</button>
-            </li>
-          </ul>
-        </nav>
-      </div>
-      <div class="entreprise" id="entreprise">
-        <div class="title-text-center">
-          Les entreprises
-        </div>
-        <div class="layout-search-center">
-          <label>Rechercher :</label>
-          <div class="datalist-search">
-            <select id="searchTypeEnt" name="searchTypeEnt">
-              <option value="raisonSociale">Raison Sociale</option>
-              <option value="address">Adresse</option>
-              <option value="postalCode">Code Postal</option>
-              <option value="city">Ville</option>              
-              <option value="country">Pays</option>
-              <option value="tutorLastName">Nom du Tuteur</option>
-              <option value="tutorFirstName">Prenom du Tuteur</option>
-              <option value="acceptedOption">Option acceptée</option>
-            </select>          
-          <input autofocus type="text" id="entreprises" onkeyup="searchInTable('entreprises', 'tableEntreprises', 'searchTypeEnt')"/>
-          </div>
-        </div>         
-        <div class="entreprise-list">
-            <div class="table-list-entreprises">
-            <form method="GET" id="entreprise" action="{{path('modification')}}">
-              <table id="tableEntreprises">
-                <tr>
-                  <th>Raison Sociale</th>
-                  <th>Adresse</th>
-                  <th>Code Postal</th>
-                  <th>Ville</th>
-                  <th>Pays</th>
-                  <th>Option acceptée</th>
-                  <th>Nom du Tuteur</th>
-                  <th>Séléction</th>                  
-                </tr>
-                  {% for entreprise in entreprise %}
-                  <tr>
-                <td>{{ entreprise.ent_rs }}</td>
-                <td>{{ entreprise.ent_adresse }}</td>
-                <td id="center">{{ entreprise.ent_cp }}</td>
-                <td>{{ entreprise.ent_ville }}</td>
-                <td>{{ entreprise.ent_pays }}</td>
-                <td>{{ entreprise.Opt_Libelle }}</td>
-                <td>{{ entreprise.per_nom }}</td>
-                <td><input type="radio" name="SelectedEnt" id="{{entreprise.ent_id}}" value="{{entreprise.ent_id}}" required ></td>
-                </tr>
-                {% endfor %}
-              </tr>
-              </table>              
-            </div>
-            <hr class="line">            
-            <div class="layout-crud">            
-              <button type="submit" class="button">Modifier une entreprise</button>
-              </form>
-              <div class="form-add-entreprise">
-              <form id="ajoutEntr" method="POST">  
-            </div>
-          <div class="layout-AddEntreprise">
-              <label>Raison Sociale :</label>
-              <input type="text" name="raisonSociale" id="raisonSociale"  required>
-              <label>Adresse :</label>
-              <input type="text" name="adresse" id="adresse" required>
-              <label>Ville :</label>
-              <input type="text" name="ville" id="ville" required>
-              <label>Code Postal :</label>
-              <input type="text" name="codePostal" id="codePostal" required>
-              <label>Pays :</label>
-              <input type="text" name="pays" id="pays" required>
-              <label>Tuteur :</label>
-              <select name="tutor" id="tutor" required>
-                {% for personne in personne %}
-                <option value="{{personne.per_id}}">{{personne.per_nom}} {{personne.per_prenom}}</option>
-                {% endfor %}
-              </select>
-              <label>Option acceptée :</label>
-              <select name="acceptedOption" id="acceptedOption" required>
-                {% for option in option  %}
-                <option value="{{option.id}}">{{option.opt_libelle}}</option>
-                {% endfor %}
-							<input type="submit" name="addEntr" value="Ajouter" id="addEntr">
-          </form>
-          </div>
-        </div>
-          </div>
-          <hr class="line">
-      </div>
-      <div class="utilisateur" id="utilisateur">             
-        <div class="title-text">
-          Les utilisateurs
-        </div>
-        <div class="layout-search">
-          <label>Rechercher :</label>
-          <div class="datalist-search">
-            <select id="searchTypeUti" name="searchTypeUti">
-              <option value="username">Nom d'utilisateur</option>
-              <option value="role">Role</option>
-            </select>         
-          <input autofocus type="text" id="utilisateurs" onkeyup="searchInTable('utilisateurs', 'tableUtilisateurs', 'searchTypeUti')"/>
-          </div>
-        </div>
-        <div class="layout-affichage">
-        </div>             
-          <div class="utilisateur-list">
-            <div class="table-list-utilisateurs">
-                <table id="tableUtilisateurs">
-                  <tr>
-                    <th>Nom d'utilisateur</th>
-                    <th>Role</th>
-                    <th id="last">Séléction</th>
-                  </tr>
-                  <tr>
-                  {% for user in user %}
-                  <tr>
-                    <td>{{ user.uti_username }}</td>
-                    <td>{{ user.uti_role }}</td>
-                    <td><input type="radio" name="SelectedUser" value="{{ user.uti_id }}"/></td>
-                  </tr>
-                  {% endfor %}
-              </table>
-            </form>
-            </div>
-          </div>
-          <hr class="line"> 
-          <div class="layout-crud">
-          <form  id="ajoutUser">
-              <label>Nom d'utilisateur :</label>
-              <input type="text" id="username" name="username"/>
-              <label>Role :</label>
-              <select id="role" name="role">
-                <option value="admin">Admin</option>
-                <option value="professeur">Professeur</option>
-              </select>
-              <label>Mot de passe :</label>
-              <input type="password" id="password" name="password"/>
-              <input type="submit" value="Ajouter" id="submitUser"/>
-            </form>
-          <button class="button" id="editUser">Modifier un utilisateur</button>
-          <form action="#" method="POST">
-        </div>
-
-        </div>      
-        <div class="tuteur" id="tuteur">
-          <div class="title-text">
-            Les tuteurs
-          </div>
-          <div class="layout-search" >
-            <label>Rechercher :</label>
-            <div class="datalist-search">
-              <select id="searchTypeTut" name="searchTypeTut">
-                <option value="lastName">Nom</option>
-                <option value="firstName">Prenom</option>
-                <option value="eMail">Email</option>
-                <option value="tel">Telephone</option>
-              </select>
-              <input type="text" id="tuteurs" onkeyup="searchInTable('tuteurs', 'tuteursTable', 'searchTypeTut')"/>
-            </div>
-          </div>                  
-          <div class="tuteur-list">
-            <div class="table-list-tuteurs">
-              <table id="tuteursTable">
-                <tr>
-                  <th>Nom</th>
-                  <th>Prenom</th>
-                  <th>Email</th>
-                  <th>Telephone</th>
-                  <th id="last">Séléction</th>
-                </tr>                
-                {% for personne in personne %}
-                  <tr>
-                    <td>{{ personne.per_nom }}</td>
-                    <td>{{ personne.per_prenom }}</td>
-                    <td>{{ personne.per_mail }}</td>
-                    <td id="center">{{ personne.per_tel }}</td>
-                    <td><input type="radio" name="SelectedPer" value={{personne.per_id}}</td>
-                  </tr>
-                {% endfor %}
-              </table>
-            </div>
-          </div>
-          <hr class="line">
-          <div class="layout-crud">
-            <!--<button class="button" id="addTuteur"  onclick="affichageAjout()" >Ajouter un tuteur</button>-->
-            <button class="button" id="editTuteur" onclick="affichageAjout()">Modifier un tuteur</button>
-          </div>
-          <div class="layout-affichage" >
-            <form id="ajoutTuteur">
-              <label>Nom :</label>
-              <input type="text" id="lastName" name="lastName" required/>
-              <label>Prenom :</label>
-              <input type="text" id="firstName" name="firstName" required/>
-              <label>Email :</label>
-              <input type="text" id="email" name="email" required/>
-              <label>Telephone :</label>
-              <input type="text" id="phone" name="phone" required/>
-              <input type="submit" value="Ajouter" id="SubmitTuteur"/>
-            </form>
-          </div>  
-        </div>
-        <div class="form-back-button">
-          <form method="post">
-            <button value="Deconnexion" id="back-button" name="deconnectButton" type="submit">Deconnexion</button>
-          </form>
-		    </div>
-		</div>       
-  </body>
-</html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Back Office</title>
+		<link href="ressources/css/BackOffice.css" rel="stylesheet">
+		<link href="ressources/img/iconeCampus.ico" rel="shortcut icon">
+	</head>
+	<script src="ressources/js/searchInTable.js"></script>
+	<script type="text/javascript" src="ressources/js/ListShow.js"></script>
+	<script type="text/javascript" src="ressources/js/affichagePrincipale.js"></script>
+	<script src="ressources/js/goBack.js"></script>
+	<body>
+		<div class="main-layout">
+			<div class="logo-container">
+				<img src="ressources/img/logoCampus.png" alt="Logo La Châtaigneraie">
+			</div>
+			<div class="nav">
+				<nav>
+					<ul>
+						<li>
+							<button name="btnEntreprise" id="btnEntreprise" onclick="ListShow()">Entreprises</button>
+						</li>
+						<li>
+							<button name="btnUser" id="btnUser" onclick="ListShow()">Utilisateurs</button>
+						</li>
+						<li>
+							<button name="btnTutor" id="btnTuteur" onclick="ListShow()">Tuteurs</button>
+						</li>
+					</ul>
+				</nav>
+			</div>
+			{# SECTION Entreprises #}
+			<div class="entreprise" id="entreprise">
+				<div class="title-text-center">
+					Les entreprises
+				</div>
+				<div class="layout-search-center">
+					<label>Rechercher :</label>
+					<div class="datalist-search">
+						<select id="searchTypeEnt" name="searchTypeEnt">
+							<option value="raisonSociale">Raison Sociale</option>
+							<option value="address">Adresse</option>
+							<option value="postalCode">Code Postal</option>
+							<option value="city">Ville</option>
+							<option value="country">Pays</option>
+							<option value="tutorLastName">Nom du Tuteur</option>
+							<option value="tutorFirstName">Prenom du Tuteur</option>
+							<option value="acceptedOption">Option acceptée</option>
+						</select>
+						<input autofocus type="text" id="entreprises" onkeyup="searchInTable('entreprises', 'tableEntreprises', 'searchTypeEnt')"/>
+					</div>
+				</div>
+				<div class="entreprise-list">
+					<div class="table-list-entreprises">
+						<form method="GET" id="entreprise" action="{{path('modification')}}">
+							<table id="tableEntreprises">
+								<tr>
+									<th>Raison Sociale</th>
+									<th>Adresse</th>
+									<th>Code Postal</th>
+									<th>Ville</th>
+									<th>Pays</th>
+									<th>Option acceptée</th>
+									<th>Nom du Tuteur</th>
+									<th>Séléction</th>
+								</tr>
+								{% for entreprise in entreprise %}
+									<tr>
+										<td>{{ entreprise.ent_rs }}</td>
+										<td>{{ entreprise.ent_adresse }}</td>
+										<td id="center">{{ entreprise.ent_cp }}</td>
+										<td>{{ entreprise.ent_ville }}</td>
+										<td>{{ entreprise.ent_pays }}</td>
+										<td>{{ entreprise.Opt_Libelle }}</td>
+										<td>{{ entreprise.per_nom }}</td>
+										<td><input type="radio" name="SelectedEnt" id="{{entreprise.ent_id}}" value="{{entreprise.ent_id}}" required></td>
+									</tr>
+								{% endfor %}
+							</table>
+						</div>
+						<hr class="line">
+						<div class="layout-crud">
+							<button id="editEntr" type="submit" class="button">Modifier une entreprise</button>
+						</form>
+						<div class="form-add-entreprise">
+							<form id="ajoutEntr" method="POST"></div>
+							<div class="layout-AddEntreprise">
+								<div class="layout-AddEntreprise-input">
+									<label>Raison Sociale :</label>
+									<input type="text" name="raisonSociale" id="raisonSociale" required>
+								</div>
+								<div class="layout-AddEntreprise-input">
+									<label>Adresse :</label>
+									<input type="text" name="adresse" id="adresse" required>
+								</div>
+								<div class="layout-AddEntreprise-input">
+									<label>Ville :</label>
+									<input type="text" name="ville" id="ville" required>
+								</div>
+								<div class="layout-AddEntreprise-input">
+									<label>Code Postal :</label>
+									<input type="text" name="codePostal" id="codePostal" required>
+								</div>
+								<div class="layout-AddEntreprise-input">
+									<label>Pays :</label>
+									<input type="text" name="pays" id="pays" required>
+								</div>
+								<div class="layout-AddEntreprise-input">
+									<label>Tuteur :</label>
+									<select name="tutor" id="tutor" required>
+										{% for personne in personne %}
+											<option value="{{personne.per_id}}">{{personne.per_nom}}
+												{{personne.per_prenom}}</option>
+										{% endfor %}
+									</select>
+								</div>
+								<div class="layout-AddEntreprise-input">
+									<label>Option acceptée :</label>
+									<select name="acceptedOption" id="acceptedOption" required>
+										{% for option in option  %}
+											<option value="{{option.id}}">{{option.opt_libelle}}</option>
+										{% endfor %}
+									</select>
+								</div>
+								<input type="submit" name="addEntr" value="Ajouter" id="addEntr">
+							</form>
+						</div>
+					</div>
+				</div>
+				<hr class="line">
+			</div>
+			{# !SECTION #}
+			{# SECTION Utilisateurs #}
+			<div class="utilisateur" id="utilisateur">
+				<div class="title-text">
+					Les utilisateurs
+				</div>
+				<div class="layout-search">
+					<label>Rechercher :</label>
+					<div class="datalist-search">
+					<select id="searchTypeUti" name="searchTypeUti">
+						<option value="username">Nom d'utilisateur</option>
+						<option value="role">Role</option>
+					</select>
+					<input autofocus type="text" id="utilisateurs" onkeyup="searchInTable('utilisateurs', 'tableUtilisateurs', 'searchTypeUti')"/>
+				</div>
+			</div>
+			<form method="GET" id="utilisateur" action="{{path('modification')}}">				
+			<div class="layout-affichage"></div>
+			<div class="utilisateur-list">
+				<div class="table-list-utilisateurs">
+					<table id="tableUtilisateurs">
+						<tr>
+							<th>Nom d'utilisateur</th>
+							<th>Role</th>
+							<th id="last">Séléction</th>
+						</tr>
+						<tr>
+							{% for user in user %}
+								<tr>
+									<td>{{ user.uti_username }}</td>
+									<td>{{ user.uti_role }}</td>
+									<td><input type="radio" id="SelectedUser" name="SelectedUser" value="{{ user.uti_id }}" required /></td>
+								</tr>
+							{% endfor %}
+						</tr>
+					</table>
+					
+			</div>
+		</div>
+		<hr class="line">
+		<button class="button" type="submit" id="editUser">Modifier un utilisateur</button>
+		</form>
+		<div class="layout-crud">
+			<form method="POST" >
+				<label>Nom d'utilisateur :</label>
+				<input type="text" id="username" name="username"/>
+				<label>Role :</label>
+				<select id="role" name="role">
+					<option value="admin">Admin</option>
+					<option value="professeur">Professeur</option>
+				</select>
+				<label>Mot de passe :</label>
+				<input type="password" id="password" name="password"/>
+				<input type="submit" value="Ajouter" id="submitUser"/>
+			</form>
+			</div>
+		</div>
+		{# !SECTION #}
+		{# SECTION Tuteurs #}
+		<div class="tuteur" id="tuteur">
+			<div class="title-text">
+				Les tuteurs
+			</div>
+			<div class="layout-search">
+				<label>Rechercher :</label>
+				<div class="datalist-search">
+					<select id="searchTypeTut" name="searchTypeTut">
+						<option value="lastName">Nom</option>
+						<option value="firstName">Prenom</option>
+						<option value="eMail">Email</option>
+						<option value="tel">Telephone</option>
+					</select>
+					<input type="text" id="tuteurs" onkeyup="searchInTable('tuteurs', 'tuteursTable', 'searchTypeTut')"/>
+				</div>
+			</div>
+			<div class="tuteur-list">
+				<div class="table-list-tuteurs">
+					<form method="GET" id="tuteur" action="{{path('modification')}}">
+					<table id="tuteursTable">
+						<tr>
+							<th>Nom</th>
+							<th>Prenom</th>
+							<th>Email</th>
+							<th>Telephone</th>
+							<th id="last">Sélection</th>
+						</tr>
+						{% for personne in personne %}
+							<tr>
+								<td>{{ personne.per_nom }}</td>
+								<td>{{ personne.per_prenom }}</td>
+								<td>{{ personne.per_mail }}</td>
+								<td id="center">{{ personne.per_tel }}</td>
+								<td><input type="radio" id="SelectedPer" name="SelectedPer" value={{personne.per_id}} required></td>
+							</tr>
+						{% endfor %}
+					</table>
+				</div>
+			</div>
+			<hr class="line">
+			<div class="layout-crud">
+				<button class="button" type="submit" id="editTuteur">Modifier un tuteur</button>
+					</form>	
+			</div>
+			<div class="layout-affichage">
+				<form method="POST">
+					<label>Nom :</label>
+					<input type="text" id="lastName" name="lastName" required/>
+					<label>Prenom :</label>
+					<input type="text" id="firstName" name="firstName" required/>
+				<label>Email :</label>
+					<input type="text" id="email" name="email" required/>
+					<label>Telephone :</label>
+					<input type="number" id="phone" name="phone"/>
+					<input type="submit" value="Ajouter" id="SubmitTuteur"/>
+				</form>
+			</div>
+		</div>
+		<div class="form-back-button">
+			<form method="post">
+				<button value="Deconnexion" id="back-button" name="deconnectButton" type="submit">Deconnexion</button>
+			</form>
+		</div>
+	</body>
+</html></div>{# !SECTION #}</body></html>

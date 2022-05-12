@@ -21,12 +21,21 @@ class BackOfficeController extends AbstractController
         return $this->redirectToRoute('accueil');
       }
 
+      // SECTION Suppression
       if (isset($_POST['deleteEntr'])) {
         $stmt = $doctrine->getConnection()->prepare('CALL PS_D_Entreprise(:IdEntreprise);');
         $stmt->bindValue('IdEntreprise', intval($_POST['deleteEntr']));
         $stmt->execute();
         $stmt = null;
       }
+
+      if(isset($_POST['deleteTut'])) {
+        $stmt = $doctrine->getConnection()->prepare('CALL PS_D_Tuteur(:IdTuteur);');
+        $stmt->bindValue('IdTuteur', intval($_POST['deleteTut']));
+        $stmt->execute();
+        $stmt = null;
+      }
+      // !SECTION Suppression
 
       if (isset($_POST['raisonSociale'])) {
         $stmt = $doctrine->getConnection()->prepare('CALL PS_I_Entreprise(:RaisonSociale,:Adresse,:CodePostal,:Pays,:Ville,:Option_id,:Personne);');
@@ -64,6 +73,15 @@ class BackOfficeController extends AbstractController
         $stmt->bindValue('Telephone', $_POST['phone']);
         $stmt->execute();
         $stmt = null;
+      }      
+      
+      if (isset($_POST['username'])){
+        $stmt = $doctrine->getConnection()->prepare('CALL PS_I_Utilisateur(:Username,:Password,:role);');
+        $stmt->bindValue('Username', $_POST['username']);
+        $stmt->bindValue('Password', $_POST['password']);
+        $stmt->bindValue('role', substr($_POST['role'], 0, 1));
+        $stmt->execute();
+        $stmt = null;
       }
    
       $stmt = $doctrine->getConnection()->prepare('SELECT entreprise.id as ent_id, ent_rs, CONCAT(per_nom, " ", per_prenom)  as per_nom, ent_adresse,ent_cp,ent_ville,ent_pays, IFNULL(opt_libelle, "-") as Opt_Libelle from entreprise LEFT join entreprise_option on entreprise.opt_id = entreprise_option.id LEFT JOIN personne on entreprise.personne_id = personne.id Order by entreprise.id;');
@@ -74,8 +92,7 @@ class BackOfficeController extends AbstractController
       //$resultEntreprise = $ListEntreprise->execute();
       $resultProfil = $ListeProfil->execute();
       $resultUser = $ListeUser->execute();
-      $resultOption = $ListeOption->execute();  
-      
+      $resultOption = $ListeOption->execute();       
       
       if(isset($_POST['deconnectButton'])){
         $this->get('session')->set('connected', false);

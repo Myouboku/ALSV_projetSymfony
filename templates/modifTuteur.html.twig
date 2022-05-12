@@ -8,7 +8,6 @@
 	</head>
 	<script src="ressources/js/goBack.js"></script>
 	<body>
-		{# REVIEW y a tout a review pour le coup #}
 		<div class="main-layout">
 			<div class="logo-container">
 				<img src="ressources/img/logoCampus.png" alt="Logo La Châtaigneraie">
@@ -18,22 +17,29 @@
 					<div class="form-group">
 						{% for tuteur in tuteur %}
 							<label for="rs">Prénom :</label>
-							<input type="text" id="prenom" name="prenom" value="{{ tuteur.per_nom }}">
+							<input type="text" id="prenom" name="prenom" value="{{ tuteur.per_prenom }}">
 							<label for="adresse">Nom :</label>
 							<input type="text" id="nom" name="nom" value="{{ tuteur.per_nom }}">
 							<label for="cp">Adresse E-Mail :</label>
 							<input type="text" id="email" name="email" value="{{ tuteur.per_mail }}">
-							<label for="ville">Téléphone :</label>
-							<input type="text" id="tel" name="tel" value="{{ tuteur.per_tel }}">
+							<label for="tel">Téléphone :</label>
+							<input type="number" id="tel" name="tel" value="{{ tuteur.per_tel }}">
 							<label for="option">Année :</label>
 							<input type="text" id="annee" name="annee" value="{{ tuteur.annee }}">
 							<label for="option">Profil :</label>
 							<select type="text" id="profil" name="profil">
-
+								<option required value="{{ tuteur.pro_id }}">{{ tuteur.pro_libelle }}</option>
+								{# pour chaque profil dans profil, on crée une option #}
+								{% for profil in profil %}
+									<option value="{{ profil.id }}">{{ profil.pro_libelle }}</option>
+								{% endfor %}
 							</select>
 							<label for="option">Fonction :</label>
 							<select type="text" id="fonction" name="fonction">
-
+								<option selected value="{{ tuteur.fon_id }}">{{ tuteur.fon_libelle }}</option>
+								{% for fonction in fonction %}
+									<option value="{{ fonction.id }}">{{ fonction.fon_libelle }}</option>
+								{% endfor %}
 							</select>
 						{% endfor %}
 					</div>
@@ -41,8 +47,9 @@
 				</form>
 				<div class="delete-entr-button">
 					<form action="{{ path('backoffice')}}" method="POST">
+						{# TODO gérer la suppression tuteur #}
 						{% for tuteur in tuteur %}
-							<button type="submit" name="deleteEntr" value="{{ tuteur.idEntr }}" id="deleteEntr">Supprimer le tuteur</button>
+							<button type="submit" name="deleteTut" value="{{ tuteur.id }}" id="deleteTut">Supprimer le tuteur</button>
 						{% endfor %}
 					</form>
 				</div>

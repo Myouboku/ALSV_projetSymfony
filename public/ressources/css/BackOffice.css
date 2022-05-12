@@ -13,7 +13,7 @@ body {
 /* TODO bandeau flex pour logo, infos utilisateurs et boutons de navigation */
 
 .main-layout {
-    margin-top: 5em;
+    margin-top: 3em;
     line-height: 1.5;
 }
 
@@ -234,7 +234,7 @@ body {
 }
 
 .layout-AddEntreprise {
-    display: table;
+    display: grid;
     margin-top: 50px;
 }
 
@@ -244,10 +244,14 @@ body {
     color: #343434;
 }
 
+.layout-AddEntreprise input, .layout-AddEntreprise select {
+    margin-left: 7px;
+}
+
 .layout-AddEntreprise input {
     text-align: left;
     height: 30px;
-    width: 250px;
+    width: 225px;
     border: none;
     box-shadow: 0 5px 6px rgba(0, 0, 0, .094);
     color: #343434;
@@ -260,6 +264,25 @@ body {
 
 .layout-AddEntreprise input#addEntr {
     text-align: center;
-    width: 100px;
- 
+    width: 100px; 
+}
+
+.layout-AddEntreprise select {
+    text-align: left;
+    height: 30px;
+    width: 200px;
+    border: none;
+    box-shadow: 0 5px 6px rgba(0, 0, 0, .094);
+    color: #343434;
+    font-weight: 300;
+}
+
+.layout-AddEntreprise-input {
+    margin-top: 10px;
+}
+
+.layout-AddEntreprise input#addEntr {
+    margin-top: 10px;
+    width: 200px;
+    height: 30px;
 }

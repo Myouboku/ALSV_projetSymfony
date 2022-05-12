@@ -16,8 +16,7 @@
 				<form action="{{ path('backoffice') }}" method="POST">
 					<div class="form-group">
 						{% for entreprise in entreprise %}
-							<label for="idEntr">Id :</label>
-							<input readonly type="text" id="idEntr" name="idEntr" value="{{ entreprise.idEntr }}">
+							<input type="hidden" id="idEntr" name="idEntr" value="{{ entreprise.idEntr }}">
 							<label for="modif_rs">Raison sociale :</label>
 							<input type="text" id="rs" name="modif_rs" value="{{ entreprise.ent_rs }}">
 							<label for="modif_adresse">Adresse :</label>
