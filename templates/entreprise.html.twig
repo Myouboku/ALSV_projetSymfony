@@ -6,8 +6,8 @@
 		<link href="ressources/css/Entreprise.css" rel="stylesheet">
 		<link href="ressources/img/iconeCampus.ico" rel="shortcut icon">
 	</head>
-	<script src="https://kit.fontawesome.com/825b4a9861.js" crossorigin="anonymous"></script>
-		<script src="ressources/js/goBack.js"></script>
+	<script src="ressources/js/searchInTable.js"></script>
+	<script src="ressources/js/goBack.js"></script>
 	<body>
 		<div class="main-layout">
 			<header class="header">
@@ -17,10 +17,10 @@
 					</div>
 					<div class="header-text right">
 						<div class="header-text-role">
-							Admin
+							Professeur
 						</div>
 						<div class="header-text-name">
-							Romain Duchnok
+							{{prenom}} {{nom}}
 						</div>
 					</div>					
 				</div>
@@ -30,31 +30,48 @@
 					Liste des entreprises
 				</div>
 			</div>
+				<div class="layout-search-center">
+					<label>Rechercher :</label>
+					<div class="datalist-search">
+						<select id="searchTypeEnt" name="searchTypeEnt">
+							<option value="raisonSociale">Raison Sociale</option>
+							<option value="address">Adresse</option>
+							<option value="postalCode">Code Postal</option>
+							<option value="city">Ville</option>
+							<option value="country">Pays</option>
+							<option value="tutorLastName">Tuteur</option>							
+							<option value="acceptedOption">Option acceptée</option>
+						</select>
+						<input autofocus type="text" id="entreprises" onkeyup="searchInTable('entreprises', 'tableEntreprises', 'searchTypeEnt')"/>
+					</div>
+				</div>
 			{# SECTION Liste de l'entreprise #}
 
 			<div class="table-list-entreprises">
-				<table>
+				<table id="tableEntreprises">
 					<tr>
 						<th>Raison Sociale</th>
 						<th>Adresse</th>
 						<th>Code Postal</th>
 						<th>Ville</th>
 						<th>Pays</th>
+						<th>Tuteur</th>
 						<th>Option acceptée</th>
 					</tr>
 					{% for entreprise in entreprise %}
 						<tr>
 							<td>{{ entreprise.ent_rs }}</td>
 							<td>{{ entreprise.ent_adresse }}</td>
-							<td>{{ entreprise.ent_cp }}</td>
+							<td id="center">{{ entreprise.ent_cp }}</td>
 							<td>{{ entreprise.ent_ville }}</td>
 							<td>{{ entreprise.ent_pays }}</td>
+							<td>{{ entreprise.tuteur }}</td>
 							<td>{{ entreprise.Opt_Libelle}}</td>
 						</tr>
 					{% endfor %}
 				</table>
 			</div>
-			<div class="form-entreprise-back-button">
+			<div class="form-entreprise-back-button" id="center">
 				<form method="post">
 					<button value="Deconnexion" id="back-button" name="deconnectButton" type="submit">Deconnexion</button>
 				</form>
