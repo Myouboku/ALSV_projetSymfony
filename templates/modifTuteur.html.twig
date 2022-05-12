@@ -16,6 +16,7 @@
 				<form action="{{ path('backoffice') }}" method="POST">
 					<div class="form-group">
 						{% for tuteur in tuteur %}
+							<input type="hidden" id="idTut" name="idTut" value="{{ tuteur.per_id }}">
 							<label for="rs">Prénom :</label>
 							<input type="text" id="prenom" name="prenom" value="{{ tuteur.per_prenom }}">
 							<label for="adresse">Nom :</label>
@@ -49,7 +50,7 @@
 					<form action="{{ path('backoffice')}}" method="POST">
 						{# TODO gérer la suppression tuteur #}
 						{% for tuteur in tuteur %}
-							<button type="submit" name="deleteTut" value="{{ tuteur.id }}" id="deleteTut">Supprimer le tuteur</button>
+							<button type="submit" name="deleteTut" value="{{ tuteur.per_id }}" id="deleteTut">Supprimer le tuteur</button>
 						{% endfor %}
 					</form>
 				</div>

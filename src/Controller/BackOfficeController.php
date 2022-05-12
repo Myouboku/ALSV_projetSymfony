@@ -29,6 +29,7 @@ class BackOfficeController extends AbstractController
         $stmt = null;
       }
 
+      // NOTE suppression d'un tuteur
       if(isset($_POST['deleteTut'])) {
         $stmt = $doctrine->getConnection()->prepare('CALL PS_D_Tuteur(:IdTuteur);');
         $stmt->bindValue('IdTuteur', intval($_POST['deleteTut']));
@@ -36,7 +37,8 @@ class BackOfficeController extends AbstractController
         $stmt = null;
       }
       // !SECTION Suppression
-
+       
+      // NOTE insertion entreprise
       if (isset($_POST['raisonSociale'])) {
         $stmt = $doctrine->getConnection()->prepare('CALL PS_I_Entreprise(:RaisonSociale,:Adresse,:CodePostal,:Pays,:Ville,:Option_id,:Personne);');
         $stmt->bindValue('RaisonSociale', $_POST['raisonSociale']);
@@ -49,7 +51,8 @@ class BackOfficeController extends AbstractController
         $stmt->execute();
         $stmt = null;
       }
-      
+
+      // NOTE modification entreprise
       if (isset($_POST['modif_rs'])) {        
         $stmt = $doctrine->getConnection()->prepare('CALL PS_E_Entreprise(:IdEntr, :RaisonSociale,:Adresse,:CodePostal,:Pays,:Ville,:Option_id,:Personne);');
         $stmt->bindValue('IdEntr', intval($_POST['idEntr']));
@@ -64,7 +67,7 @@ class BackOfficeController extends AbstractController
         $stmt = null;
       }
 
-      /*Code Add Tuteur*/
+      // NOTE insertion tuteur
       if (isset($_POST['lastName'])) {
         $stmt = $doctrine->getConnection()->prepare('CALL PS_I_Tuteur(:Mail,:Nom,:Prenom,:Telephone);');
         $stmt->bindValue('Nom', $_POST['lastName']);
@@ -75,11 +78,27 @@ class BackOfficeController extends AbstractController
         $stmt = null;
       }      
       
+      // NOTE insertion utilisateur
       if (isset($_POST['username'])){
         $stmt = $doctrine->getConnection()->prepare('CALL PS_I_Utilisateur(:Username,:Password,:role);');
         $stmt->bindValue('Username', $_POST['username']);
         $stmt->bindValue('Password', $_POST['password']);
         $stmt->bindValue('role', substr($_POST['role'], 0, 1));
+        $stmt->execute();
+        $stmt = null;
+      }
+
+      // NOTE edit tuteur
+      if (isset($_POST['prenom'])) {
+        $stmt = $doctrine->getConnection()->prepare('CALL PS_E_Tuteur(:idTut, :nom, :prenom, :email, :tel, :annee, :profil, :fonction);');
+        $stmt->bindValue('idTut', $_POST['idTut']);
+        $stmt->bindValue('nom', $_POST['nom']);
+        $stmt->bindValue('prenom', $_POST['prenom']);
+        $stmt->bindValue('email', $_POST['email']);
+        $stmt->bindValue('tel', $_POST['tel']);
+        $stmt->bindValue('annee', $_POST['annee']);
+        $stmt->bindValue('profil', intval($_POST['profil']));
+        $stmt->bindValue('fonction', intval($_POST['fonction']));
         $stmt->execute();
         $stmt = null;
       }
@@ -100,8 +119,6 @@ class BackOfficeController extends AbstractController
       }    
       require_once('AccueilController.php');
       return $this->render('backoffice.html.twig',[ 'entreprise' => $result->fetchAll(), 'user' => $resultUser->fetchAll(),'option' => $resultOption->fetchAll(),  'personne' => $resultProfil->fetchAll()] );
-      
-      
     }
   }
 ?>
