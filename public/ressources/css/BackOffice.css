@@ -1,113 +1,129 @@
-
 html {
-  font-family: Roboto, sans-serif;    
+    font-family: Roboto, sans-serif;
 }
 
 body {
-  background-color: #d5d5d5;
-  display: flex;
-  justify-content: center;
-  align-content: center;
+    background-color: #d5d5d5;
+    display: flex;
+    justify-content: center;
+    align-content: center;
 }
+
 
 /* TODO bandeau flex pour logo, infos utilisateurs et boutons de navigation */
-.main-layout {    
-  margin-top: 5em;
-  line-height: 1.5;
+
+.main-layout {
+    margin-top: 3em;
+    line-height: 1.5;
 }
+
 
 /* center the div */
+
 .logo-container {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-}
-.logo-container img {
-  width: 400px;
-  height: auto;
+    display: flex;
+    justify-content: center;
+    align-content: center;
 }
 
-.title-text {
-  margin-top: 50px;
-  color: #343434;
-  font-size: 40px;
+.logo-container img {
+    width: 400px;
+    height: auto;
+}
+
+.title-text, .title-text-center {
+    margin-top: 50px;
+    color: #343434;
+    font-size: 40px;
 }
 
 .form-login {
-  margin-top: 3em;
-}
-.button {
-  margin-top: 3em;
+    margin-top: 3em;
 }
 
 .button {
-  width: 150px;
-  height: 35px;
-  background-color: #7e7e7e;
-  color: #EFEFEF;
-  border: 0px;
-  font-weight: bold;
-  letter-spacing: 1px;
-  font-size: 15px;
-  border-radius: 3px;
-  margin-left: 2px;
-  transition: .5s all;
-  box-shadow: 0 5px 6px rgba(0, 0, 0, .094);
+    margin-top: 3em;
+}
+
+.button {
+    width: 150px;
+    height: 35px;
+    background-color: #7e7e7e;
+    color: #EFEFEF;
+    border: 0px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 15px;
+    border-radius: 3px;
+    margin-left: 2px;
+    transition: .5s all;
+    box-shadow: 0 5px 6px rgba(0, 0, 0, .094);
 }
 
 .button:hover {
-  background-color: #9f9f9f;
-  cursor: pointer;    
+    background-color: #9f9f9f;
+    cursor: pointer;
 }
 
-.utilisateur, .entreprise, .tuteur {  
-  display: none;
+.utilisateur,
+.entreprise,
+.tuteur {
+    display: none;
+}
+.utilisateur-list,
+.tuteur-list {
+    margin-top: 50px;
 }
 
-.entreprise-list, .utilisateur-list, .tuteur-list {
- 
-margin-top: 50px;
+.entreprise-list {
+    margin-top: 20px;
 }
 
-form.ajoutTuteur, form.ajoutEntr, form.ajoutUtilisateur {
-  display: none;
+
+
+.table-list-entreprises table tr:nth-child(even),
+.table-list-utilisateurs table tr:nth-child(even),
+.table-list-tuteurs table tr:nth-child(even) {
+    background-color: #f2f2f2;
 }
 
-.table-list-entreprises table tr:nth-child(even), .table-list-utilisateurs table tr:nth-child(even), .table-list-tuteurs table tr:nth-child(even) {
-  background-color: #f2f2f2;
+.table-list-entreprises table tr th,
+.table-list-utilisateurs table tr th,
+.table-list-tuteurs table tr th {
+    border: 2px solid #343434;
+    padding: 2px 20px 2px 20px;
 }
 
-.table-list-entreprises table tr th, .table-list-utilisateurs table tr th, .table-list-tuteurs table tr th {
-  
-  border: 2px solid #343434;
-  padding: 2px 20px 2px 20px;
+.table-list-entreprises,
+.table-list-utilisateurs,
+.table-list-tuteurs {
+    border: 2px solid #343434;
+    max-width: max-content;
+    margin: auto;
 }
 
-.table-list-entreprises, .table-list-utilisateurs, .table-list-tuteurs {
-  border: 2px solid #343434;
-  max-width: max-content;
-  margin: auto;
+.table-list-entreprises table,
+.table-list-utilisateurs table,
+.table-list-tuteurs table {
+    text-align: left;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
-.table-list-entreprises table, .table-list-utilisateurs table, .table-list-tuteurs table {    
-  text-align: left;
-  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+.table-list-entreprises table tr td#center,
+.table-list-tuteurs table tr td#center {
+    text-align: center;
 }
 
-.table-list-entreprises table tr td#center, .table-list-tuteurs table tr td#center {  
-  text-align: center;
+.nav {
+    margin-top: 50px;
 }
 
-  .nav {
-    margin-top : 50px;
-  }
-
-  .nav nav ul li {
+.nav nav ul li {
     list-style: none;
     display: inline;
-  }
+}
 
-  .nav nav ul li button {
+.nav nav ul li button {
     appearance: none;
     background-color: transparent;
     border: 2px solid #343434;
@@ -132,32 +148,31 @@ form.ajoutTuteur, form.ajoutEntr, form.ajoutUtilisateur {
     touch-action: manipulation;
     width: 200px;
     will-change: transform;
-  }
-  
-  .nav {
+}
+
+.nav {
     display: flex;
     justify-content: center;
     align-content: center;
-  }
+}
 
-  
-  .nav nav ul li button:disabled {
+.nav nav ul li button:disabled {
     pointer-events: none;
-  }
-  
-  .nav nav ul li button:hover {
+}
+
+.nav nav ul li button:hover {
     color: #fff;
     background-color: #343434;
     box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
     transform: translateY(-2px);
-  }
-  
-  .nav nav ul li button:active {
+}
+
+.nav nav ul li button:active {
     box-shadow: none;
     transform: translateY(0);
-  }
+}
 
-  .form-back-button {
+.form-back-button {
     /* center the button */
     display: flex;
     justify-content: center;
@@ -170,7 +185,7 @@ form.ajoutTuteur, form.ajoutEntr, form.ajoutUtilisateur {
     width: 150px;
     height: 35px;
     background-color: #7e7e7e;
-    color: #efefef;    
+    color: #efefef;
     border: 0px;
     font-weight: bold;
     letter-spacing: 1px;
@@ -181,11 +196,93 @@ form.ajoutTuteur, form.ajoutEntr, form.ajoutUtilisateur {
 }
 
 .form-back-button button:hover {
-    background-color: #9f9f9f; 
-    cursor: pointer;    
+    background-color: #9f9f9f;
+    cursor: pointer;
 }
 
 .layout-crud {
-  justify-content: center;
-  align-content: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.datalist-search input {
+    text-align: left;
+    height: 30px;
+    width: 250px;
+    border: none;
+    box-shadow: 0 5px 6px rgba(0, 0, 0, .094);
+    color: #343434;
+    font-weight: 300;
+}
+
+.title-text-center, .layout-search-center {
+    margin-left: 300px;    
+}
+
+.layout-search label {
+    font-size: 1.1em;
+}
+
+.datalist-search select {
+    text-align: left;
+    height: 30px;
+    width: 200px;
+    border: none;
+    box-shadow: 0 5px 6px rgba(0, 0, 0, .094);
+    color: #343434;
+    font-weight: 300;
+}
+
+.layout-AddEntreprise {
+    display: grid;
+    margin-top: 50px;
+}
+
+.layout-AddEntreprise label {
+    padding-left: 20px;
+    font-size: 1.2em;
+    color: #343434;
+}
+
+.layout-AddEntreprise input, .layout-AddEntreprise select {
+    margin-left: 7px;
+}
+
+.layout-AddEntreprise input {
+    text-align: left;
+    height: 30px;
+    width: 225px;
+    border: none;
+    box-shadow: 0 5px 6px rgba(0, 0, 0, .094);
+    color: #343434;
+    font-weight: 300;
+}
+
+.layout-AddEntreprise label, .layout-AddEntreprise input {
+    margin-bottom: 10px;
+}
+
+.layout-AddEntreprise input#addEntr {
+    text-align: center;
+    width: 100px; 
+}
+
+.layout-AddEntreprise select {
+    text-align: left;
+    height: 30px;
+    width: 200px;
+    border: none;
+    box-shadow: 0 5px 6px rgba(0, 0, 0, .094);
+    color: #343434;
+    font-weight: 300;
+}
+
+.layout-AddEntreprise-input {
+    margin-top: 10px;
+}
+
+.layout-AddEntreprise input#addEntr {
+    margin-top: 10px;
+    width: 200px;
+    height: 30px;
 }

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Back Office</title>
+		<link href="ressources/css/Modification.css" rel="stylesheet">
+		<link href="ressources/img/iconeCampus.ico" rel="shortcut icon">
+	</head>
+	<script src="ressources/js/goBack.js"></script>
+	<body>
+		<div class="main-layout">
+			<div class="logo-container">
+				<img src="ressources/img/logoCampus.png" alt="Logo La Châtaigneraie">
+			</div>
+			<div class="form-container">
+				<form action="{{ path('backoffice') }}" method="POST">
+					<div class="form-group">
+						{% for utilisateur in utilisateur %}							
+							<input type="hidden" id="idUtil" name="idUtil" value="{{ utilisateur.id }}">
+							<label for="modif_rs">Utilisateur :</label>
+							<input type="text" id="rs" name="modif_rs" value="{{ utilisateur.uti_username }}">
+							<select id="role" name="modif_role">
+								<option value="">Choisir un rôle</option>
+									<option value="a">Administrateur</option>
+									<option value="p">Professeur</option>
+							</select>
+						{% endfor %}
+					</div>
+					<button type="submit">Valider</button>
+				</form>
+				<div class="delete-uti-button">
+					<form action="{{ path('backoffice')}}" method="POST">	
+					{% for utilisateur in utilisateur %}					
+							<button type="submit" name="deleteUti" value="{{ utilisateur.id }}" id="deleteUti">Supprimer l'utilisateur</button>						
+					{% endfor %}
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- formulaire de modification du tuteur -->
+		<div class="form-back-button">
+			<button value="Retour" id="back-button" onclick="goBack()">Retour</button>
+		</div>
+	</body>
+</html>
