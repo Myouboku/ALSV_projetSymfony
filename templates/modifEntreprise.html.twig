@@ -12,6 +12,9 @@
 			<div class="logo-container">
 				<img src="ressources/img/logoCampus.png" alt="Logo La Châtaigneraie">
 			</div>
+			<div class="title-text">
+					Modifier une entreprise
+				</div>
 			<div class="form-container">
 				<form action="{{ path('backoffice') }}" method="POST">
 					<div class="form-group">
@@ -45,20 +48,23 @@
 							</select>
 						{% endfor %}
 					</div>
-					<button type="submit">Valider</button>
+					<div class="form-group-button">						
+						<button type="submit">Valider</button>
+					
 				</form>
 				<div class="delete-entr-button">
 					<form action="{{ path('backoffice')}}" method="POST">
 						{% for entreprise in entreprise %}
 							<button type="submit" name="deleteEntr" value="{{ entreprise.idEntr }}" id="deleteEntr">Supprimer l'entreprise</button>
 						{% endfor %}
+						</div>
 					</form>
 				</div>
 			</div>
-		</div>
-		<!-- formulaire de mofification de l'entreprise -->
-		<div class="form-back-button">
-			<button value="Retour" id="back-button" onclick="goBack()">Retour</button>
-		</div>
+			<div class="form-back-button">
+				<button value="Retour" id="back-button" onclick="goBack()">Retour</button>
+			</div>
+		</div>		
+		
 	</body>
 </html>
