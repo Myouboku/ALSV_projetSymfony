@@ -1,0 +1,130 @@
+html {
+    font-family: Roboto, sans-serif;
+}
+
+body {
+    background-color: #d5d5d5;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+
+/* TODO bandeau flex pour logo, infos utilisateurs et boutons de navigation */
+
+.main-layout {
+    margin-top: 3em;
+    line-height: 1.5;
+}
+
+
+/* center le logo */
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.logo-container img {
+    width: 400px;
+    height: auto;
+}
+
+
+/* center le titre */
+.title-text {
+    margin-top: 30px;
+    color: #343434;
+    font-size: 40px;
+}
+
+.form-group {
+    display: grid;
+    margin-top: 10px;
+}
+
+/* formulaire */
+
+.form-group label {
+    padding-left: 20px;
+    font-size: 1.2em;
+    color: #343434;
+}
+
+.form-group input, .form-group select {
+    margin-left: 7px;
+}
+
+.form-group input {
+    text-align: left;
+    height: 30px;
+    width: 225px;
+    border: none;
+    box-shadow: 0 5px 6px rgba(0, 0, 0, .094);
+    color: #343434;
+    font-weight: 300;
+}
+
+.form-group label, .form-group input {
+    margin-bottom: 10px;
+}
+
+.form-group select {
+    text-align: left;
+    height: 30px;
+    width: 200px;
+    border: none;
+    box-shadow: 0 5px 6px rgba(0, 0, 0, .094);
+    color: #343434;
+    font-weight: 300;
+    margin-bottom: 10px;
+}
+
+/* buttons */
+.form-back-button {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-top: 30px;
+}
+
+.form-back-button button {
+    width: 150px;
+    height: 35px;
+    background-color: #7e7e7e;
+    color: #efefef;
+    border: 0px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 18px;
+    border-radius: 3px;
+    transition: .5s all;
+    box-shadow: 0 5px 6px rgba(0, 0, 0, .094);
+}
+
+.form-back-button button:hover {
+    background-color: #9f9f9f;
+    cursor: pointer;
+}
+
+.form-group-button {
+    display:inline-flex;
+    margin-top: 2em;
+}
+
+.form-group-button button {
+    
+    width: 150px;
+    height: 30px;
+    text-align: center;
+    border: none;
+    box-shadow: 0 5px 6px rgb(0 0 0 / 9%);
+    color: #343434;
+    font-weight: 300;    
+}
+
+/* séparer les deux boutons */
+.form-group-button button:first-child {
+    margin-right: 50px;
+}
+

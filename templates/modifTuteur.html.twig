@@ -12,6 +12,9 @@
 			<div class="logo-container">
 				<img src="ressources/img/logoCampus.png" alt="Logo La Châtaigneraie">
 			</div>
+			<div class="title-text">
+				Modifier un tuteur
+			</div>
 			<div class="form-container">
 				<form action="{{ path('backoffice') }}" method="POST">
 					<div class="form-group">
@@ -44,6 +47,7 @@
 							</select>
 						{% endfor %}
 					</div>
+					<div class="form-group-button">	
 					<button type="submit">Valider</button>
 				</form>
 				<div class="delete-entr-button">
@@ -52,13 +56,15 @@
 						{% for tuteur in tuteur %}
 							<button type="submit" name="deleteTut" value="{{ tuteur.per_id }}" id="deleteTut">Supprimer le tuteur</button>
 						{% endfor %}
+						</div>
 					</form>
 				</div>
 			</div>
-		</div>
-		<!-- formulaire de mofification de l'tuteur -->
-		<div class="form-back-button">
+			<div class="form-back-button">
 			<button value="Retour" id="back-button" onclick="goBack()">Retour</button>
 		</div>
+		</div>
+		<!-- formulaire de mofification de l'tuteur -->
+		
 	</body>
 </html>
